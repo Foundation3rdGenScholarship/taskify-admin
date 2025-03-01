@@ -87,8 +87,8 @@ export default function HomePage() {
       title: "Project Management",
       description:
         "Trackify boards keep tasks organized and work moving forward. In a glance, see everything from “things to do” to “aww yeah, we did it!”",
-        colorline: "bg-[#DE16B6]",
-        color: "border-l-[#DE16B6]",
+      colorline: "bg-[#DE16B6]",
+      color: "border-l-[#DE16B6]",
     },
     {
       title: "Lists",
@@ -103,7 +103,6 @@ export default function HomePage() {
         "Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists to show their status.",
       colorline: "bg-[#FF9500]",
       color: "border-l-[#FF9500]",
-      
     },
   ];
   const el = React.useRef(null);
@@ -254,7 +253,13 @@ export default function HomePage() {
         {/* Left Side: Cards */}
         <div className="flex flex-col w-full lg:w-3/5 gap-3.5">
           {card3.map((card, index) => (
-            <CardDiscription2 key={index} title={card.title}  description={card.description} color={card.color} colorline={card.colorline} />
+            <CardDiscription2
+              key={index}
+              title={card.title}
+              description={card.description}
+              color={card.color}
+              colorline={card.colorline}
+            />
           ))}
         </div>
 

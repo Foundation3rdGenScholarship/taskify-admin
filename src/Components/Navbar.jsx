@@ -18,9 +18,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Buttons */}
-        <div
-          className={`hidden gap-4 sm:flex flex-col sm:flex-row`}
-        >
+        <div className={`hidden gap-4 sm:flex flex-col sm:flex-row`}>
           <button className="px-4 py-2 bg-white border rounded text-primary hover:text-secondary">
             Create Account
           </button>
