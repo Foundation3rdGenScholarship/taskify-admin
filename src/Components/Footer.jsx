@@ -1,4 +1,5 @@
 import React from "react";
+import TaskifyLogo from "../assets/TaskifyLogo.png";
 
 export default function Footer() {
   const Website = [
@@ -304,6 +305,7 @@ export default function Footer() {
               </a>
             </li>
           </ul>
+          
         </div>
       </div>
     </footer>

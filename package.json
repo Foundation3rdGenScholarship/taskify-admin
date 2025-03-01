@@ -14,9 +14,14 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@lottiefiles/dotlottie-react": "^0.13.0",
+<<<<<<< HEAD
     "formik": "^2.4.6",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.476.0",
+=======
+    "@tailwindcss/vite": "^4.0.8",
+    "framer-motion": "^12.4.7",
+>>>>>>> 40c77a4216756611b33ec9cef205d5858d7669a0
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
@@ -35,7 +40,12 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+<<<<<<< HEAD
     "tailwindcss": "^3.4.17",
     "vite": "^6.1.0"
+=======
+    "postcss": "^8.5.3",
+    "vite": "^6.1.1"
+>>>>>>> 40c77a4216756611b33ec9cef205d5858d7669a0
   }
 }

@@ -38,21 +38,7 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className={`hidden gap-4 sm:flex flex-col sm:flex-row`}>
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="relative flex items-center justify-center w-[44px] overflow-hidden border border-white rounded-full bg-secondary"
-          >
-            <motion.div
-              key={darkMode ? "moon" : "sun"} // Ensure smooth transition when toggling
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              {darkMode ?  <FontAwesomeIcon icon={faMoon} /> :  <FontAwesomeIcon icon={faSun}/>}
-            </motion.div>
-          </button> 
-          <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
+          <button className="px-4 py-2 bg-white border rounded text-primary hover:text-secondary">
             Create Account
           </button>
           <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16 ">
