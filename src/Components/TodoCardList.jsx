@@ -3,35 +3,6 @@ import { useState } from "react"
 import {NavLink} from "react-router";
 import { format } from "date-fns";
 
-// const DB = [
-//     {
-//         id: 1,
-//         title: "Project Alpha",
-//         description: "A comprehensive design system for web applications",
-//         createdDate: "2023-05-15",
-//         total: 10,
-//         task: 2,
-//         category: "Design",
-//     },
-//     {
-//         id: 2,
-//         title: "Website Redesign",
-//         description: "Complete overhaul of the company website with modern UI/UX principles",
-//         createdDate: "2023-06-20",
-//         total: 15,
-//         task: 8,
-//         category: "Development",
-//     },
-//     {
-//         id: 3,
-//         title: "Mobile App",
-//         description: "Cross-platform mobile application for customer engagement",
-//         createdDate: "2023-07-10",
-//         total: 20,
-//         task: 5,
-//         category: "Mobile",
-//     },
-// ]
 
 function TodoCard({ item }) {
     const [isHovered, setIsHovered] = useState(false)
@@ -53,7 +24,7 @@ function TodoCard({ item }) {
             <div className="flex items-center justify-between text-txt20 font-bold text-gray-600 dark:text-white">
                 <div>{item.title}</div>
                 <div className={"md:hidden"}>
-                    <NavLink to="/tododetail">
+                    <NavLink to={`/tododetail/${id}`}>
                         {isHovered ? (
                             <ChevronRight strokeWidth={1} className="mr-8" />
                         ) : (
@@ -89,7 +60,7 @@ function TodoCard({ item }) {
                     {item.category}
                 </div>
             </div>
-            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center  p-1 text-txt12  py-3 pr-3 ">
+            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center  p-1 text-txt12  ">
                 <Clock strokeWidth={1} className="mr-1" />
                 {formatDate(item.created_at)}
             </div>
