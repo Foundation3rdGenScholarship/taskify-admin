@@ -166,20 +166,11 @@ export function AboutUs() {
       viewport={{ once: false }} // Trigger every time it comes into view
     >
       {/* Background Image */}
-      <motion.img
+      <img
         className="absolute inset-0 object-cover w-full h-full opacity-60"
         src={groupwork}
         alt="Background Image"
 
-      width={150}
-      height={100}
-      initial={{ scale: 1 }}
-      animate={{ scale: [1, 1.05, 1] }} // Zoom in and out
-      transition={{
-        duration: 10, // Duration of one cycle (1 second)
-        repeat: Infinity, // Repeat the animation forever
-        ease: "easeInOut"
-      }}
     />
     
 
@@ -486,23 +477,10 @@ export function AboutUs() {
         {/* Logo Section */}
         <motion.div
           className="flex items-center justify-center -mt-20"
-          initial={{ scale: 1 }}
-      animate={{ scale: [1, 1.1, 1] }} // Zoom in and out
-      transition={{
-        duration: 4, // Duration of one cycle (1 second)
-        repeat: Infinity, // Repeat the animation forever
-        ease: "easeInOut"
-      }}
         >
           <motion.img
             src={logo}
             alt="Logo"
-            initial={{ opacity: 0, rotate: -10 }}
-            whileInView={{ opacity: 1, rotate: 0 }}
-            transition={{
-              duration: 1.2,
-              ease: 'easeOut',
-            }}
           />
         </motion.div>
       </motion.div>

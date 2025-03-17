@@ -84,13 +84,14 @@ export default function Navbar() {
               )}
             </motion.div>
           </button>
-          <Link to="/register">
-            <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
-              Create Account
-            </button>
-          </Link>
           <div className="flex items-center justify-center">
             {getAceAccessToken() && name && (
+              <div className="flex gap-2"> 
+              <Link to="/dashboard">
+                  <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
+                    Go to dashboard
+                  </button>
+                </Link>
               <div className="flex items-center bg-white rounded-full w-[43.6px] h-[41.6px] justify-center">
                 <Link to="/userpf" className="flex items-center justify-center">
                   <h1 className="flex font-bold align-middle text-primary text-txt20">
@@ -98,15 +99,23 @@ export default function Navbar() {
                   </h1>
                 </Link>
               </div>
+              </div>
+             
             )}
             {!getAceAccessToken() && !name && (
-              <Link
-                to="login"
-                className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16"
-                
-              >
-                Login your account
-              </Link>
+              <div className="flex gap-2">
+                <Link to="/register">
+                  <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
+                    Create Account
+                  </button>
+                </Link>
+                <Link
+                  to="login"
+                  className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16"
+                >
+                  Login your account
+                </Link>
+              </div>
             )}
           </div>
         </div>

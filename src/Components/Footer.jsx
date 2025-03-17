@@ -5,6 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { Component } from "react";
+import { Link } from "react-router";
 
 export default function Footer() {
   const Website = [
@@ -25,7 +26,7 @@ export default function Footer() {
     {
       id: 3,
       name: "Our Mentor",
-      path: "/mentor",
+      path: "/aboutus",
       underline: "hover:underline",
       colortxt: "text-white",
       hovering: "hover:text-secondary",
@@ -33,7 +34,7 @@ export default function Footer() {
     {
       id: 4,
       name: "Team Member",
-      path: "/membor",
+      path: "/aboutus",
       underline: "hover:underline",
       colortxt: "text-white",
       hovering: "hover:text-secondary",
@@ -50,7 +51,7 @@ export default function Footer() {
     {
       id: 2,
       name: "Privacy Policy",
-      path: "/pivacy",
+      path: "/aboutus",
       underline: "hover:underline",
       colortxt: "text-white",
       hovering: "hover:text-secondary",
@@ -58,7 +59,7 @@ export default function Footer() {
     {
       id: 3,
       name: "Terms and Conditions",
-      path: "/term",
+      path: "/aboutus",
       underline: "hover:underline",
       colortxt: "text-white",
       hovering: "hover:text-secondary",
@@ -66,7 +67,7 @@ export default function Footer() {
     {
       id: 4,
       name: "Sponsors",
-      path: "/sponsors",
+      path: "/aboutus",
       underline: "hover:underline",
       colortxt: "text-white",
       hovering: "hover:text-secondary",

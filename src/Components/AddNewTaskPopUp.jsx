@@ -124,7 +124,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
       <div className=" font-roboto inset-0 fixed
        top-0 bottom-0 z-9 flex items-center justify-center bg-black  bg-opacity-50 ">
         <div className="px-10 bg-white rounded-md dark:bg-gray-700 relative -top-[470px] md:-top-[286px] md:translate-y-0 
- lg:top-[50px] lg:-translate-y-1/2">
+ lg:-top-[225px] lg:-translate-y-1/2">
           <div className="">
             <div className="pb-2 flex justify-between">
               <div className="grid pr-10"> 

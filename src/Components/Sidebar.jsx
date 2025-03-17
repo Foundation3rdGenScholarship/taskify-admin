@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router";
 import { MdOutlineLeaderboard } from "react-icons/md";
 import { IoPersonOutline, IoSettingsOutline } from "react-icons/io5";
 import {
@@ -26,7 +26,20 @@ export default function Sidebar() {
         }
       >
         <div className="flex flex-row mt-6 md:flex-col dark:text-white">
-          <NavLink
+        <Link
+          to="/"
+            className={
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background "
+            }
+          >
+            <MdOutlineLeaderboard
+              className={"w-5 h-5"}
+              width={"10"}
+              height={"10"}
+            />
+            <div>Home Page</div>
+          </Link>
+          <Link
           to="/dashboard"
             className={
               "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background "
@@ -38,8 +51,8 @@ export default function Sidebar() {
               height={"10"}
             />
             <div>Workspace</div>
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className={
               "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
@@ -47,8 +60,8 @@ export default function Sidebar() {
           >
             <IoPersonOutline className={"w-5 h-5"} width={"10"} height={"10"} />
             <div>Members</div>
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className={
               "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
@@ -60,8 +73,8 @@ export default function Sidebar() {
               height={"10"}
             />
             <div>User Profile</div>
-          </NavLink>
-          <NavLink 
+          </Link>
+          <Link 
             className={
               "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
@@ -73,8 +86,8 @@ export default function Sidebar() {
               height={"10"}
             />
             <div>Notifications</div>
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className={
               "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
@@ -86,7 +99,7 @@ export default function Sidebar() {
               height={"10"}
             />
             <div>About Taskify</div>
-          </NavLink>
+          </Link>
         </div>
         
       </nav>
@@ -109,26 +122,30 @@ export default function Sidebar() {
             </button>
             {/* Navigation Links */}
             <div className="flex flex-col mt-10 ">
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
+             <Link to="/" className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" >
+                <MdOutlineLeaderboard className="w-5 h-5" />
+                <div>Home Page</div>
+              </Link>
+              <Link to="/dashboard"  className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" >
                 <MdOutlineLeaderboard className="w-5 h-5" />
                 <div>Workspace</div>
-              </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/member">
+              </Link>
+              <Link  className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/member">
                 <IoPersonOutline className="w-5 h-5" />
                 <div>Members</div>
-              </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
+              </Link>
+              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/userpf">
                 <IoSettingsOutline className="w-5 h-5" />
-                <div>Settings</div>
-              </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
+                <div>user Profile</div>
+              </Link>
+              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/notification">
                 <IoMdNotificationsOutline className="w-5 h-5" />
                 <div>Notifications</div>
-              </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
+              </Link>
+              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/aboutus">
                 <IoIosHelpCircleOutline className="w-5 h-5" />
                 <div>About Taskify</div>
-              </NavLink>
+              </Link>
             </div>
           </nav>
         </div>

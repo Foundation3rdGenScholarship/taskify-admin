@@ -47,12 +47,12 @@ function ProgressCard({ item }) {
 
     return (
         <div
-            className="rounded-xl bg-white dark:bg-gray-700  p-4 border-2 dark:border-none dark:text-white w-72 space-y-4"
+            className="p-4 space-y-4 bg-white border-2 rounded-xl dark:bg-gray-700 dark:border-none dark:text-white w-72"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
 
         >
-            <div className="flex items-center justify-between text-txt20 font-bold text-gray-600 dark:text-white">
+            <div className="flex items-center justify-between font-bold text-gray-600 text-txt20 dark:text-white">
                 <div>{item.title}</div>
                 <div className={"md:hidden"}>
                 <NavLink to="/detail">
@@ -71,13 +71,13 @@ function ProgressCard({ item }) {
                 )}
                 </div>
             </div>
-            <div className="text-gray-500 dark:text-white line-clamp-2 w-56">{item.description}</div>
-            <div className="text-gray-500  dark:text-white my-4">Created at: {formatDate(item.createdDate)}</div>
-            <div className="flex items-center text-gray-500  dark:text-white">
+            <div className="w-56 text-gray-500 dark:text-white line-clamp-2">{item.description}</div>
+            <div className="my-4 text-gray-500 dark:text-white">Created at: {formatDate(item.createdDate)}</div>
+            <div className="flex items-center text-gray-500 dark:text-white">
                 <ClipboardList strokeWidth={1} className="mr-4" />
                 {item.task} / {item.total}
             </div>
-            <div className="text-gray-500  dark:text-white flex items-center">
+            <div className="flex items-center text-gray-500 dark:text-white">
                 <div className="pr-2">Category: </div>
                 <div
                     className={`border-2 p-1 rounded-lg text-txt12 ${
@@ -91,7 +91,7 @@ function ProgressCard({ item }) {
                     {item.category}
                 </div>
             </div>
-            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center w-24 p-1 text-txt12 h-5 py-3 pr-3 ">
+            <div className="flex items-center justify-center w-24 h-5 p-1 py-3 pr-3 bg-red-200 rounded-md text-accent text-txt12 ">
                 <Clock strokeWidth={1} className="mr-1" width={18} height={18} />
                 {formatDate(item.createdDate).split("/")[0]}d
             </div>
