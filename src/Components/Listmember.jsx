@@ -67,29 +67,43 @@ const DB_member = [
 
  function Cardmember({item}) {
     return (
-        <div className={"w-full my-8"}>
-            <div className={"flex justify-between"}>
-            <div className={"flex space-x-2 align-middle items-center"}>
-                <div className=""  >
-                    <img className="w-12 h-12 border-2 rounded-full border-primary" src={item.img} alt="" />
-                </div>
-                <div>
-                <h1 className={"font-bold text-txt18 dark:text-white"}>{item.name}</h1>
-                <p className={"text-txt14 dark:text-gray-300"}>{item.email}</p>
-                </div>
-            </div>
-                <div className={"flex space-x-2 h-10"}>
-                    <button className={"w-auto rounded-lg px-4 h-30 bg-gray-50 hover:text-background hover:bg-primary"}>Member of Workspace</button>
-                    <button className={"w-auto rounded-lg px-4 h-30 bg-gray-50 hover:text-background hover:bg-primary"}>Remove</button>
-                </div>
-            </div>
-            <hr className={"border-dashed border-amber-400 my-2"} />
+        <div className="w-full my-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        {/* User Info */}
+        <div className="flex items-center gap-3">
+          <img
+            className="w-12 h-12 border-2 rounded-full border-primary"
+            src={item.img}
+            alt=""
+          />
+          <div>
+            <h1 className="font-bold text-lg sm:text-txt18 dark:text-white">
+              {item.name}
+            </h1>
+            <p className="text-sm sm:text-txt14 dark:text-gray-300">
+              {item.email}
+            </p>
+          </div>
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button className="w-full sm:w-auto rounded-lg px-4 py-2 bg-gray-50 hover:text-white hover:bg-primary transition">
+            Member of Workspace
+          </button>
+          <button className="w-full sm:w-auto rounded-lg px-4 py-2 bg-gray-50 hover:text-white hover:bg-primary transition">
+            Remove
+          </button>
+        </div>
+      </div>
+
+      <hr className="border-dashed border-amber-400 my-2" />
+    </div>
     )
 }
 export default function Listmember () {
      return (
-         <section className={"w-auto h-auto"}>
+         <section className={"w-auto h-auto px-4 md:px-8"}>
              {DB_member.map((item) => (
                  <Cardmember key={item.id} item={item}></Cardmember>
              ))}

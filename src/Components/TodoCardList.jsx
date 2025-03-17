@@ -89,10 +89,11 @@ function TodoCard({ item }) {
                     {item.category}
                 </div>
             </div>
-            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center  p-1 text-txt12  py-3 pr-3 ">
-                <Clock strokeWidth={1} className="mr-1" />
-                {formatDate(item.created_at)}
-            </div>
+           
+            <div className="flex items-center justify-center bg-red-200 rounded-md text-red-500   w-36 p-1 text-sm mt-4">
+                    <Clock strokeWidth={1} className="mr-1" width={18} height={18} />
+                    {formatDate(item.created_at)}
+                </div>
         </div>
     )
 }

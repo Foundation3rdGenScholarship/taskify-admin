@@ -15,7 +15,7 @@ export default function  ProgessCardDetail() {
     console.log('userData', userData)
     return (
         <div className={"mt-10"}>
-            <div className={"mx-15 mr-2 px-2 bg-white h-auto space-y-4 mb-10 p-3 lg:w-full md:block md:w-96  dark:bg-gray-700"}>
+            <div className={"mx-15 mr-2 px-2 bg-white h-auto space-y-4 mb-10 p-3 lg:w-full md:block md:w-96 dark:bg-gray-700"}>
                 <div className={" leading-tight flex items-center justify-center"}>
                     <NavLink to="/progress" className={" text-[30px] md:hidden "} >
                         <IoIosArrowBack />
