@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Profilepic from "../assets/c910b642-cc3f-43c1-804e-6753b1d7e660.webp"
-import * as Yup from "yup";
+import Profilepic from "../assets/Chaya.webp"
+import * as Yup from "yup"
 export default function Profile() {
    const validationSchema = Yup.object({
     firstName: Yup.string().required("First Name is required"),
@@ -12,15 +12,15 @@ export default function Profile() {
     password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
   });
   return (
-<div className="w-screen mx-auto shadow-md px-5 py-10 h-screen min-w-80">
-  <div className="flex mb-5 flex-col md:flex-row items-center">
-    <img className="w-16 h-16 rounded-full border-2 border-primary" src={Profilepic} alt="" />
-    <div className="font-family ml-5">
-      <h1 className="font-semibold text-2xl text-center md:text-left">Narak Leng</h1>
-      <p className="text-md text-gray-500 text-center md:text-left">narakleng12345@gmail.com</p>
+<div className="w-screen h-screen px-5 py-10 mx-auto shadow-md min-w-80">
+  <div className="flex flex-col items-center mb-5 md:flex-row">
+    <img className="w-16 h-16 border-2 rounded-full border-primary" src={Profilepic} alt="" />
+    <div className="ml-5 font-family">
+      <h1 className="text-2xl font-semibold text-center md:text-left">Narak Leng</h1>
+      <p className="text-center text-gray-500 text-md md:text-left">narakleng12345@gmail.com</p>
     </div>
   </div>
-  <h2 className="text-2xl font-semibold mb-4 text-center md:text-left">Change Your Personal Information</h2>
+  <h2 className="mb-4 text-2xl font-semibold text-center md:text-left">Change Your Personal Information</h2>
   
   <Formik
     initialValues={{
@@ -38,7 +38,7 @@ export default function Profile() {
     }}
   >
     {({ isSubmitting, resetForm }) => (
-      <Form className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      <Form className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
         {/* Left Column */}
         <div className="space-y-4">
           <div className="flex flex-col">
@@ -93,7 +93,7 @@ export default function Profile() {
             <Field
               as="select"
               name="gender"
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 text-gray-500"
+              className="w-full px-4 py-2 text-gray-500 border rounded-md focus:ring-2 focus:ring-blue-500"
             >
               <option value="" disabled hidden>Select Gender</option>
               <option value="male" className="text-black">Male</option>
@@ -115,11 +115,11 @@ export default function Profile() {
         </div>
 
         {/* Buttons (Full-Width) */}
-        <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-5">
+        <div className="flex flex-col col-span-1 space-y-4 md:col-span-2 md:flex-row md:space-y-0 md:space-x-5">
           <button
             type="button"
             onClick={() => resetForm()}
-            className="bg-gray-300 text-primary py-2 px-6 rounded-md hover:bg-gray-400 w-full md:w-auto"
+            className="w-full px-6 py-2 bg-gray-300 rounded-md text-primary hover:bg-gray-400 md:w-auto"
           >
             Cancel
           </button>
@@ -127,7 +127,7 @@ export default function Profile() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-primary text-white py-2 px-6 rounded-md hover:bg-blue-600 disabled:bg-gray-400 w-full md:w-auto"
+            className="w-full px-6 py-2 text-white rounded-md bg-primary hover:bg-blue-600 disabled:bg-gray-400 md:w-auto"
           >
             {isSubmitting ? "Updating..." : "Update Profile"}
           </button>

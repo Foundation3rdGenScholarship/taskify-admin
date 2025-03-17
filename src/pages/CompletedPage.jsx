@@ -8,20 +8,21 @@ export default function CompletedPage() {
 
     return (
 
-            <div>
+            <div className=" w-auto bg-background p-8 dark:bg-gray-900">
                 <NavbarForworkShop title={"Completed List"} link={"/completed"} />
-                <div className={"flex"}>
+                <div className={"flex justify-center"}>
                     <div onClick={() => {setProgress(!progress)}}>
                         <CompletedCardList/>
                     </div>
 
-                    <div className={"lg:w-[780px] w-96 lg:mt-0 md:mt-16 overscroll-none hidden md:block md:h-[600px] lg:h-[380px] bg-gray-50 dark:bg-gray-700 overflow-hidden rounded-2xl overflow-y-scroll scroll-smooth "}>
+                    <div className={"lg:w-[780px] w-96 lg:mt-0 md:mt-16 overscroll-none hidden md:block md:h-[600px] lg:h-[570px] bg-gray-50 dark:bg-gray-700 overflow-hidden rounded-2xl overflow-y-scroll scroll-smooth "}>
                         {progress &&(<CompletedCardDetail/>)}
                     </div>
 
 
                 </div>
             </div>
+            
 
     )
 }

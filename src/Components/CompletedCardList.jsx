@@ -99,7 +99,7 @@ function CompletedCard({ item }) {
 
 export default function CompletedCardList() {
     return (
-        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[500px] 2xl:h-auto xl overflow-y-scroll overflow-hidden">
+        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[570px] 2xl:h-auto xl overflow-y-scroll overflow-hidden">
             {DB.map((item) => (
                 <CompletedCard key={item.id} item={item}/>
             ))}

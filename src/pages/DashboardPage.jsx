@@ -5,8 +5,10 @@ import { useLocation } from "react-router";
 import { getAceAccessToken } from "../lib/secureLocalStorage";
 import { useGetMeQuery } from "../features/auth/authApiSlice";
 import { useGetWorkspacesQuery } from "../features/workspaceApi";
+import { WorkspaceCardSkeleton } from "../Components/skeleton/WorkspaceCardSkeleton";
 
 export default function DashboardPage() {
+
   const [activeTab, setActiveTab] = useState("your-workspace");
   const [isModelOpen, setIsModelOpen] = useState(false);
 
@@ -14,18 +16,11 @@ export default function DashboardPage() {
   const token = getAceAccessToken();
   console.log("Rescure token: ", token);
   console.log("location :", location.state);
-
+console.log('status', status)
   const [workspaceList, setWorkspaceList] = useState([]);
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState("");
 
   const { data, isSuccess } = useGetMeQuery();
-
-  //const workpace = useGetWorkspacesQuery(data?.id);
-
-  // console.log(workpace)
-
-  
-
   const sharedWorkspaces = [
     {
       id: 4,
@@ -33,7 +28,7 @@ export default function DashboardPage() {
       description:
         "Taskify is a productivity platform that allows users to organize tasks...",
       color: "bg-yellow-500",
-      date: "12 Feb, 2025, at 3:05 PM",
+      created_at: "2025-02-27T00:00:00+00:00",
     },
     {
       id: 5,
@@ -41,7 +36,7 @@ export default function DashboardPage() {
       description:
         "Taskify is a productivity platform that allows users to organize tasks...",
       color: "bg-blue-500",
-      date: "12 Feb, 2025, at 3:05 PM",
+      created_at: "2025-02-27T00:00:00+00:00",
     },
     {
       id: 6,
@@ -49,9 +44,12 @@ export default function DashboardPage() {
       description:
         "Taskify is a productivity platform that allows users to organize tasks...",
       color: "bg-gray-600",
-      date: "12 Feb, 2025, at 3:05 PM",
+      created_at: "2025-02-27T00:00:00+00:00",
     },
   ];
+
+ 
+ 
 
   useEffect(() => {
     if (isSuccess && data?.id) {
@@ -84,35 +82,16 @@ export default function DashboardPage() {
     fetchWorkspaces();
   }, [userId]);
 
-  // useEffect(() => {
-  //   const fetchWorkspaces = async () => {
-  //     if (token) {
-  //       console.log(token);
-  //       try {
-  //         const respone = await fetch(
-  //           `${
-  //             import.meta.env.VITE_BASE_URL
-  //           }/workspaces?limit=20&offset=0&user_id=eq.${user_id}`,
-  //           {
-  //             headers: { Authorization: `Bearer ${token}` },
-  //           }
-  //         );
-  //         const data = await respone.json();
-  //         setWorkspaceList([...data].reverse());
-  //       } catch (error) {
-  //         console.log("Error feching workspace:", error);
-  //       }
-  //     }
-  //   };
-  //   fetchWorkspaces();
-  // }, [data?.id]);
-
+ 
+  
   const handleWorkspaceResponse = (newWorkspace) => {
     if (newWorkspace) {
       setWorkspaceList((prevWorkspace) => [...prevWorkspace, newWorkspace]);
     }
   };
-
+  const { data: workspaces, isLoading, error } = useGetWorkspacesQuery();
+  console.log('workspaces',workspaceList)
+  console.log('userId in ', userId)
   return (
     <>
       <div className="flex bg-gray-100  border">
@@ -144,23 +123,34 @@ export default function DashboardPage() {
 
           {/* Workspace Content */}
           <div className="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
-            {/* If "Your Workspace" is active */}
-            {activeTab === "your-workspace" && (
+            {/* Show Skeleton if Loading */}
+            {isLoading ? (
               <>
-                <div
-                  className="flex justify-center items-center p-6 dark:bg-gray-800  text-gray-500 border border-gray-300 rounded-lg cursor-pointer"
-                  onClick={() => setIsModelOpen(true)}
-                >
-                  <h3 className="flex items-center justify-center dark:text-white  text-txt20 text-primary">
-                    + Create New Workspace
-                  </h3>
-                </div>
-                {workspaceList.map((workspace) => (
-                  <WorkspaceCard key={workspace.id} workspace={workspace} userId={userId}  />
-                ))}
+                <WorkspaceCardSkeleton />
+                <WorkspaceCardSkeleton />
+                <WorkspaceCardSkeleton />
+                <WorkspaceCardSkeleton />
+              </>
+            ) : (
+              <>
+                {/* If "Your Workspace" is active */}
+               {activeTab === "your-workspace" && (
+                  <>
+                    <div
+                      className="flex justify-center items-center p-6 dark:bg-gray-800 text-gray-500 border border-gray-300 rounded-lg cursor-pointer"
+                      onClick={() => setIsModelOpen(true)}
+                     >
+                      <h3 className="flex items-center justify-center dark:text-white text-txt20 text-primary">
+                        + Create New Workspace
+                      </h3>
+                    </div>
+                    {workspaceList?.map((workspace) => (
+                      <WorkspaceCard key={workspace.id} workspace={workspace} userId={userId} />
+                    ))}
+                  </>
+                )}
               </>
             )}
-
             {/* If "Shared Workspace" is active */}
             {activeTab === "shared-workspace" && (
               <>

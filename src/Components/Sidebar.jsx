@@ -22,15 +22,15 @@ export default function Sidebar() {
     <>
       <nav
         className={
-          " bg-background dark:bg-gray-800 md:flex flex-col h-[100%] text-txt16  place-content-between w-1/5 sticky top-20 bottom-0 gap-y-[330px] py-2 hidden"
+          " bg-white dark:bg-gray-800 md:flex flex-col h-[100%] text-txt16  place-content-between w-1/5 sticky top-20 bottom-0 gap-y-[330px] py-2 hidden"
         }
       >
-        <div className=" flex flex-row mt-6 md:flex-col dark:text-white ">
+        <div className="flex flex-row mt-6 md:flex-col dark:text-white">
           <NavLink
+          to="/dashboard"
             className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background "
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background "
             }
-            to="/"
           >
             <MdOutlineLeaderboard
               className={"w-5 h-5"}
@@ -41,31 +41,31 @@ export default function Sidebar() {
           </NavLink>
           <NavLink
             className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background"
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
-            to="/"
+            to="/member"
           >
             <IoPersonOutline className={"w-5 h-5"} width={"10"} height={"10"} />
             <div>Members</div>
           </NavLink>
           <NavLink
             className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background"
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
-            to="/"
+            to="/userpf"
           >
             <IoSettingsOutline
               className={"w-5 h-5"}
               width={"10"}
               height={"10"}
             />
-            <div>Setting</div>
+            <div>User Profile</div>
           </NavLink>
-          <NavLink
+          <NavLink 
             className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background"
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
-            to="/"
+            to="/notification"
           >
             <IoMdNotificationsOutline
               className={"w-5 h-5"}
@@ -76,9 +76,9 @@ export default function Sidebar() {
           </NavLink>
           <NavLink
             className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background"
+              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
             }
-            to="/"
+            to="/aboutus"
           >
             <IoIosHelpCircleOutline
               className={"w-5 h-5"}
@@ -88,27 +88,18 @@ export default function Sidebar() {
             <div>About Taskify</div>
           </NavLink>
         </div>
-        <NavLink className={" hover:bg-primary"}>
-          <div
-            className={
-              "flex justify-start items-center space-x-4 pl-4 align-middle py-4 hover:bg-primary hover:text-background dark:text-white "
-            }
-          >
-            <TiArrowLeftOutline />
-            <div>Log Out</div>
-          </div>
-        </NavLink>
+        
       </nav>
       <div className={"absolute top-4 z-10"}>
       <button
-        className=" flex gap-10 p-5 text-2xl rounded-full text-primary md:hidden mt-20 "
+        className="flex gap-10 p-5 mt-20 text-2xl rounded-full text-primary md:hidden"
         onClick={toggleMenu}
       >
         {isOpen ? "" : <TiThMenu/> } {/* Changes icon when open/closed */}
       </button></div>
       {isOpen && (
         <div className="absolute ">
-          <nav className="fixed bottom-0 flex flex-col w-1/3 h-full py-2 transition-transform bg-background text-txt16 place-content-between top-20 gap-y-10 md:hidden min-w-56 z-10 mt-2">
+          <nav className="fixed bottom-0 z-10 flex flex-col w-1/3 h-full py-2 mt-2 transition-transform bg-background text-txt16 place-content-between top-20 gap-y-10 md:hidden min-w-56">
             {/* Close Button */}
             <button
               className="absolute top-0 right-0 flex gap-10 p-5 text-2xl rounded-full text-primary"
@@ -117,24 +108,24 @@ export default function Sidebar() {
               <AiOutlineClose/> 
             </button>
             {/* Navigation Links */}
-            <div className=" flex flex-col mt-10">
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 hover:bg-primary hover:text-background" to="/">
+            <div className="flex flex-col mt-10 ">
+              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
                 <MdOutlineLeaderboard className="w-5 h-5" />
                 <div>Workspace</div>
               </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 hover:bg-primary hover:text-background" to="/">
+              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/member">
                 <IoPersonOutline className="w-5 h-5" />
                 <div>Members</div>
               </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 hover:bg-primary hover:text-background" to="/">
+              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
                 <IoSettingsOutline className="w-5 h-5" />
                 <div>Settings</div>
               </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 hover:bg-primary hover:text-background" to="/">
+              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
                 <IoMdNotificationsOutline className="w-5 h-5" />
                 <div>Notifications</div>
               </NavLink>
-              <NavLink className="flex justify-start py-4 pl-4 space-x-4 hover:bg-primary hover:text-background" to="/">
+              <NavLink className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/">
                 <IoIosHelpCircleOutline className="w-5 h-5" />
                 <div>About Taskify</div>
               </NavLink>

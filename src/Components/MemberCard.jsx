@@ -119,7 +119,7 @@ const AddMemberForm = ({ isOpen, closeModal }) => {
       className="
         max-w-[550px] w-full bg-white dark:bg-gray-500 rounded-lg shadow-lg p-[25px] relative 
         -top-[650px] md:right-[32px] md:-top-[455px] md:translate-y-0 
-        lg:right-[35px] lg:-top-[340px] lg:-translate-y-1/2
+        lg:right-[35px] lg:-top-[620px] lg:-translate-y-1/2
       "
       onClick={(e) => e.stopPropagation()}
     >
@@ -153,7 +153,7 @@ const AddMemberForm = ({ isOpen, closeModal }) => {
                 type="email"
                 name="email"
                 placeholder="Enter member's email"
-                className="border rounded-[8px] p-2 w-full h-[40px] dark:bg-gray-400 focus:outline-none dark:text-white focus:ring-2 focus:ring-blue-500"
+                className="border rounded-[8px] p-2 w-full h-[40px] dark:bg-gray-400 focus:outline-none dark:text-white focus:ring-2 focus:ring-blue-500 dark:placeholder:text-white"
               />
               {/* Reserve space for error message */}
               <div className="min-h-[20px]">

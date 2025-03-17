@@ -59,7 +59,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import the AOS CSS
-import Profilepic from "../../assets/c910b642-cc3f-43c1-804e-6753b1d7e660.webp";
 import { FaFacebook, FaTelegram, FaGithub } from "react-icons/fa";
 
 const ProfileCard = ({ firstName, lastName, job, position, img }) => {

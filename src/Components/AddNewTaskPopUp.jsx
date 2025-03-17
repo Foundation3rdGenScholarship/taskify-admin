@@ -50,7 +50,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
 
   
   const initialValues = {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     title: "",
     note: "",
     start_date: "",
@@ -76,15 +76,46 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       console.log("Submitting Task:", values);
-      const response = await createTask(values).unwrap();
-      console.log("Task Created Successfully:", response);
-      resetForm();
-      onClose();
+      
+      let taskValues = { ...values };
+  
+      while (true) {
+        try {
+          const response = await createTask(taskValues).unwrap();
+          console.log("Task Created Successfully:", response);
+          resetForm();
+          onCl();
+          break; // Exit loop if successful
+        } catch (err) {
+          if (err?.status === 409) {
+            console.warn("UUID Conflict Detected. Generating New UUID...");
+            taskValues.id = crypto.randomUUID(); // Generate a new UUID
+            resetForm();
+            onCl();
+          } else {
+            throw err; // Throw error if it's not a conflict
+          }
+        }
+      }
     } catch (err) {
       console.error("Failed to create task:", err?.data || err);
     }
     setSubmitting(false);
   };
+  
+  // const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  //   try {
+  //     console.log("Submitting Task:", values);
+  //     //const 
+  //     const response = await createTask(values).unwrap();
+  //     console.log("Task Created Successfully:", response);
+  //     resetForm();
+  //     onClose();
+  //   } catch (err) {
+  //     console.error("Failed to create task:", err?.data || err);
+  //   }
+  //   setSubmitting(false);
+  // };
  
   
 
@@ -92,9 +123,10 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
     <>
       <div className=" font-roboto inset-0 fixed
        top-0 bottom-0 z-9 flex items-center justify-center bg-black  bg-opacity-50 ">
-        <div className="px-10 bg-white rounded-md dark:bg-gray-700 ">
+        <div className="px-10 bg-white rounded-md dark:bg-gray-700 relative -top-[470px] md:-top-[286px] md:translate-y-0 
+ lg:-top-[225px] lg:-translate-y-1/2">
           <div className="">
-            <div className="pb-4 flex justify-between">
+            <div className="pb-2 flex justify-between">
               <div className="grid pr-10"> 
               <h3 className="pt-3 font-bold text-primary text-[24px] dark:text-white">
                 Add a new task
@@ -123,7 +155,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
           >
             <Form>
               {/* title */}
-              <div className="pb-2 xl:pb-7">
+              <div className="pb-2 xl:pb-2">
                 <label
                   htmlFor="title"
                   className="font-medium text-primary  dark:text-gray-50 text-primarytext-txt16 lg:text-txt18  "
@@ -144,7 +176,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
                 
               </div>
               {/* Due Date */}
-              <div className="pb-2 xl:pb-7">
+              <div className="pb-2 xl:pb-2">
                 <label
                   htmlFor="due_date"
                   className="font-medium text-primary dark:text-white text-txt16 lg:text-txt18"
@@ -164,7 +196,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
                 />
                </div>
                 {/* start_date*/}
-              <div className="pb-2 xl:pb-7">
+              <div className="pb-2 xl:pb-2">
                 <label
                   htmlFor="start_date"
                   className="font-medium text-primary dark:text-white text-txt16 md:text-txt-18"
@@ -185,7 +217,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
                 
               </div>
               {/*reminder_date*/}
-              <div className="pb-2 xl:pb-7">
+              <div className="pb-2 xl:pb-2">
                 <label
                   htmlFor="reminder_date"
                   className="font-medium text-primary dark:text-white text-txt16 lg:text-txt18"
@@ -209,7 +241,7 @@ export default function AddNewTaskPopUp({isOp, onCl}) {
                 
               
               {/* Assign to */}
-              <div className="pb-2 xl:pb-7">
+              <div className="pb-2 xl:pb-2">
                 <label
                   htmlFor="note"
                   className="font-medium  text-primary dark:text-white text-txt16 lg:text-txt18 "

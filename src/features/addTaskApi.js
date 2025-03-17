@@ -42,9 +42,20 @@ export const addTaskApi = apiSlice.injectEndpoints({
                     }
                 }
             }
+        }),
+        getTodoTask:builder.query({
+            query:({userId,limit,offset}) =>({
+                url:`/tasks?user_id=eq.${userId}&limit=${limit}&offset=${offset}`,
+                method:"GET",
+                headers: {
+                    Authorization: `Bearer ${getAceAccessToken()}`,
+                    "Content-Type": "application/json"
+                }
+            })
+
         })
 
     })
 });
 
-export const { useCreateTaskMutation ,useGetTasksQuery, useDeleteTaskQuery } = addTaskApi;
+export const { useCreateTaskMutation ,useGetTasksQuery, useDeleteTaskQuery,useGetTodoTaskQuery } = addTaskApi;

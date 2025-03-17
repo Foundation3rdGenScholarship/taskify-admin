@@ -1,47 +1,47 @@
 import { ChevronLeft, ChevronRight, ClipboardList, Clock } from "lucide-react"
 import { useState } from "react"
 import {NavLink} from "react-router";
+import { format } from "date-fns";
 
-
-const DB = [
-    {
-        id: 1,
-        title: "Project Alpha",
-        description: "A comprehensive design system for web applications",
-        createdDate: "2023-05-15",
-        total: 10,
-        task: 2,
-        category: "Design",
-    },
-    {
-        id: 2,
-        title: "Website Redesign",
-        description: "Complete overhaul of the company website with modern UI/UX principles",
-        createdDate: "2023-06-20",
-        total: 15,
-        task: 8,
-        category: "Development",
-    },
-    {
-        id: 3,
-        title: "Mobile App",
-        description: "Cross-platform mobile application for customer engagement",
-        createdDate: "2023-07-10",
-        total: 20,
-        task: 5,
-        category: "Mobile",
-    },
-]
+// const DB = [
+//     {
+//         id: 1,
+//         title: "Project Alpha",
+//         description: "A comprehensive design system for web applications",
+//         createdDate: "2023-05-15",
+//         total: 10,
+//         task: 2,
+//         category: "Design",
+//     },
+//     {
+//         id: 2,
+//         title: "Website Redesign",
+//         description: "Complete overhaul of the company website with modern UI/UX principles",
+//         createdDate: "2023-06-20",
+//         total: 15,
+//         task: 8,
+//         category: "Development",
+//     },
+//     {
+//         id: 3,
+//         title: "Mobile App",
+//         description: "Cross-platform mobile application for customer engagement",
+//         createdDate: "2023-07-10",
+//         total: 20,
+//         task: 5,
+//         category: "Mobile",
+//     },
+// ]
 
 function TodoCard({ item }) {
     const [isHovered, setIsHovered] = useState(false)
 
 
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString)
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-    }
+    const formatDate = (isoString) => {
+        const date = new Date(isoString);
+        return isNaN(date) ? "Invalid Date" : format(date, "MMM do, yyyy");
+    };
 
     return (
         <div
@@ -69,8 +69,8 @@ function TodoCard({ item }) {
                     )}
                 </div>
             </div>
-            <div className="text-gray-500 dark:text-white line-clamp-2 w-56">{item.description}</div>
-            <div className="text-gray-500  dark:text-white my-4">Created at: {formatDate(item.createdDate)}</div>
+            <div className="text-gray-500 dark:text-white line-clamp-2 w-56">{item.note}</div>
+            <div className="text-gray-500  dark:text-white my-4">Created at: <span>{formatDate(item.created_at)}</span></div>
             <div className="flex items-center text-gray-500  dark:text-white">
                 <ClipboardList strokeWidth={1} className="mr-4" />
                 {item.task} / {item.total}
@@ -89,18 +89,18 @@ function TodoCard({ item }) {
                     {item.category}
                 </div>
             </div>
-            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center w-24 p-1 text-txt12 h-5 py-3 pr-3 ">
-                <Clock strokeWidth={1} className="mr-1" width={18} height={18} />
-                {formatDate(item.createdDate).split("/")[0]}d
+            <div className="flex items-center bg-red-200 rounded-md text-accent justify-center  p-1 text-txt12  py-3 pr-3 ">
+                <Clock strokeWidth={1} className="mr-1" />
+                {formatDate(item.created_at)}
             </div>
         </div>
     )
 }
 
-export default function TodoCardList() {
+export const TodoCardList = ({tasks})=> {
     return (
-        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[500px] 2xl:h-auto xl overflow-y-scroll overflow-hidden">
-            {DB.map((item) => (
+        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[570px] 2xl:h-auto xl overflow-y-scroll overflow-hidden">
+            {tasks.map((item) => (
                 <TodoCard key={item.id} item={item}/>
             ))}
         </section>

@@ -1,30 +1,23 @@
 
 import Cardab from "../Components/Layouts/Cardab";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import profilepic from "../assets/c910b642-cc3f-43c1-804e-6753b1d7e660.webp";
 import { motion } from "framer-motion";
 import Cardvs from "../Components/Layouts/Cardvs";
-import { RiSpaceShipFill } from "react-icons/ri";
 import groupwork from "../assets/teamwork.jpg";
 import rocket from "../assets/rocket_icon.png";
 import box from "../assets/box_icon.png";
 import card from "../assets/card_icon.png";
 import message from "../assets/message_icon.png";
-import teacher from "../assets/teacher.webp";
 import logo from "../assets/ISTAD_Logo.png";
-import mentor from "../assets/mentor.JPG";
-import student from "../assets/student.JPG";
-import lyzhia from "../assets/lyzhia.JPG";
-import pich from "../assets/pich.jpg";
-import seangly from "../assets/seangly.jpg";
-import huy from "../assets/huy.jpg";
+import student from "../assets/student.png";
 import ly from "../assets/ly.png";
 import huy1 from "../assets/huy1.png";
 import pich1 from "../assets/pich1.png";
 import lyzhia1 from "../assets/lyzhia1.png";
 import roith from "../assets/roith.png";
 import pengseang from "../assets/pengseang.png";
-import teachers from "../assets/teachers.png"
+import teachers from "../assets/teachers.png";
+import narak from "../assets/narak.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import React, { useEffect } from 'react'; 
@@ -57,7 +50,7 @@ export function AboutUs() {
       position: "FRONT-END",
     },
     {
-      img: ly,
+      img: narak,
       firstName: "LENG",
       lastName: "NARAK",
       job: "Student",
@@ -141,7 +134,7 @@ export function AboutUs() {
   }, []);
   return (
     <>
-      <section className="flex flex-col gap-20 font-family min-w-80 w-full">
+      <section className="flex flex-col w-full gap-20 font-family min-w-80">
         <section className="min-w-80">
           {/* <div className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[700px] flex items-center justify-center ">
             <img
@@ -173,20 +166,11 @@ export function AboutUs() {
       viewport={{ once: false }} // Trigger every time it comes into view
     >
       {/* Background Image */}
-      <motion.img
+      <img
         className="absolute inset-0 object-cover w-full h-full opacity-60"
         src={groupwork}
         alt="Background Image"
 
-      width={150}
-      height={100}
-      initial={{ scale: 1 }}
-      animate={{ scale: [1, 1.05, 1] }} // Zoom in and out
-      transition={{
-        duration: 10, // Duration of one cycle (1 second)
-        repeat: Infinity, // Repeat the animation forever
-        ease: "easeInOut"
-      }}
     />
     
 
@@ -493,23 +477,10 @@ export function AboutUs() {
         {/* Logo Section */}
         <motion.div
           className="flex items-center justify-center -mt-20"
-          initial={{ scale: 1 }}
-      animate={{ scale: [1, 1.1, 1] }} // Zoom in and out
-      transition={{
-        duration: 4, // Duration of one cycle (1 second)
-        repeat: Infinity, // Repeat the animation forever
-        ease: "easeInOut"
-      }}
         >
           <motion.img
             src={logo}
             alt="Logo"
-            initial={{ opacity: 0, rotate: -10 }}
-            whileInView={{ opacity: 1, rotate: 0 }}
-            transition={{
-              duration: 1.2,
-              ease: 'easeOut',
-            }}
           />
         </motion.div>
       </motion.div>

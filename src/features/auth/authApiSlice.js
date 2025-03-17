@@ -26,8 +26,16 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 "Content-Type": "application/json", // Ensure content type is set
             }
           })  
+        }),
+        editpassword: builder.mutation({
+            query: (body) => ({
+                url: "/rpc/change_password",
+                method: "POST",
+                body
+            })
+
         })
     })
 })
 
-export const { useRegisterMutation,useLoginMutation,useGetMeQuery } = authApiSlice;
+export const { useRegisterMutation,useLoginMutation,useGetMeQuery,useEditpasswordMutation } = authApiSlice;

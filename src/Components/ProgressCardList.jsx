@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, ClipboardList, Clock } from "lucide-react"
 import { useState } from "react"
-import {NavLink} from "react-router";
+import {NavLink, useLocation} from "react-router";
 
 
 const DB = [
@@ -35,7 +35,9 @@ const DB = [
 
 function ProgressCard({ item }) {
     const [isHovered, setIsHovered] = useState(false)
-
+    const location = useLocation;
+    const workspaces = location.state?.workspaceList;
+    console.log('workspaces', workspaces)
 
 
     const formatDate = (dateString) => {
@@ -99,7 +101,7 @@ function ProgressCard({ item }) {
 
 export default function ProgressCardList() {
     return (
-        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[500px] overflow-y-scroll overflow-hidden">
+        <section className=" md:my-16 lg:my-0 px-2 py-0 mx-5  lg:mx-0 w-75  space-y-custom-dashed-line h-[570px] overflow-y-scroll overflow-hidden">
             {DB.map((item) => (
                 <ProgressCard key={item.id} item={item}/>
             ))}

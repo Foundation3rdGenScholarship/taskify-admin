@@ -37,7 +37,7 @@
     "react-toastify": "^11.0.5",
     "typed.js": "^2.1.0",
     "uuid": "^11.1.0",
-    "yup": "^1.6.1"
+    "yup": "~1.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useField } from "formik";
+// import * as Yup from "yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import { setAccessToken } from "../../lib/secureLocalStorage";
+import register_images from "../../assets/register_img.png"
 
 export default function Register() {
   const [postUserRegisters, { data, isLoading, error }] = useRegisterMutation();
@@ -145,7 +147,7 @@ export default function Register() {
     };
 
     return (
-      <div className="relative">
+      <div className="relative ">
         <label
           htmlFor={props.id || props.name}
           className="block mb-[5px] font-medium  text-primary"
@@ -220,14 +222,14 @@ export default function Register() {
   return (
     <>
       <ToastContainer />
-      <section className="bg-[#F9FAFB]">
+      <section className="bg-[#F9FAFB] dark:bg-gray-900">
         <section className="grid py-8 sm:px-4 md:grid-cols-2 md:px-8 lg:px-16 ">
           {/* Form Section */}
-          <section className="px-4 py-8 bg-white rounded-l-lg md:px-12 lg:px-14 xl:px-16 xl:py-10">
+          <section className="px-4 py-8 bg-white dark:bg-gray-700 rounded-l-lg md:px-12 lg:px-14 xl:px-16 xl:py-10 ">
             <Link to="/">
-              <HiArrowLongLeft size={30} color="#1E429F" />
+              <HiArrowLongLeft size={30} className="text-primary dark:text-white  " />
             </Link>
-            <h2 className="px-5 pb-5 font-medium text-[20px] sm:text-[18px] md:text-[22px] text-center text-primary">
+            <h2 className="px-5 pb-5 font-medium text-[20px] sm:text-[18px] md:text-[22px] text-center text-primary dark:text-white">
               Create an account to continue
             </h2>
 
@@ -241,10 +243,10 @@ export default function Register() {
             >
               <Form>
                 {/* Username */}
-                <div className="pb-4">
+                <div className="pb-4 ">
                   <CustomInput
                     name="username"
-                    label="Username"
+                    label={<span className="text-primary dark:text-white">Username</span>}
                     placeholder="Username"
                   />
                 </div>
@@ -253,12 +255,12 @@ export default function Register() {
                 <div className="grid gap-4 pb-4 lg:grid-cols-2">
                   <CustomInput
                     name="family_name"
-                    label="First Name"
+                    label={<span className="text-primary dark:text-white">First Name</span>}
                     placeholder="First Name"
                   />
                   <CustomInput
                     name="given_name"
-                    label="Last Name"
+                    label={<span className="text-primary dark:text-white">Last Name</span>}
                     placeholder="Last Name"
                   />
                 </div>
@@ -267,7 +269,7 @@ export default function Register() {
                 <div className="pb-4">
                   <CustomInput
                     name="email"
-                    label="Email"
+                    label={<span className="text-primary dark:text-white">Email</span>}
                     type="email"
                     placeholder="Email"
                   />
@@ -277,13 +279,13 @@ export default function Register() {
                 <div className="grid gap-4 pb-4 lg:grid-cols-2">
                   <CustomInput
                     name="password"
-                    label="Password"
+                    label={<span className="text-primary dark:text-white">Password</span>}
                     type="password"
                     placeholder="Password"
                   />
                   <CustomInput
                     name="confirmed_password"
-                    label="Confirm Password"
+                    label={<span className="text-primary dark:text-white">Confirm Password</span>}
                     type="password"
                     placeholder="Confirm Password"
                   />
@@ -293,8 +295,8 @@ export default function Register() {
                 <div className="pb-4">
                   <CustomSelect
                     name="gender"
-                    label="Gender"
-                    className="w-full font-normal"
+                    label={<span className="text-primary dark:text-white">Gender</span>}
+                    className="w-full font-normal "
                   >
                     <option value="">Choose your gender</option>
                     <option value="Female">Female</option>
@@ -304,7 +306,7 @@ export default function Register() {
 
                 {/* Student Radio Buttons */}
                 <div className="flex items-center pb-4 gap-x-4">
-                  <span className="mb-2 font-medium text-primary">
+                  <span className="mb-2 font-medium text-primary dark:text-white">
                     Are you a student?
                   </span>
                   <label className="flex items-center mb-2">
@@ -314,16 +316,16 @@ export default function Register() {
                       value="yes"
                       className="w-4 h-4 bg-gray-100 text-subaccent border-primary focus:ring-blue-500"
                     />
-                    <span className="ms-2 text-primary">Yes</span>
+                    <span className="ms-2 text-primary dark:text-white">Yes</span>
                   </label>
                   <label className="flex items-center mb-2">
                     <Field
                       type="radio"
                       name="is_student"
                       value="no"
-                      className="w-4 h-4 bg-gray-100 text-subaccent border-primary focus:ring-blue-500"
+                      className="w-4 h-4  bg-gray-100 text-subaccent border-primary focus:ring-blue-500"
                     />
-                    <span className="ms-2 text-primary">No</span>
+                    <span className="ms-2 text-primary dark:text-white">No</span>
                   </label>
                   <ErrorMessage
                     name="is_student"
@@ -363,7 +365,7 @@ export default function Register() {
                 <p className="mt-4 text-center">
                   <Link
                     to="/login"
-                    className="text-txt14 text-primary hover:underline hover:decoration-1"
+                    className="text-txt14 text-primary dark:text-white hover:underline hover:decoration-1"
                   >
                     Already have the Taskify account? Login
                   </Link>
@@ -376,7 +378,7 @@ export default function Register() {
           <section className="bg-[#CFEAFD] flex items-center rounded-r-lg">
             <div>
               <img
-                src="./src/assets/register_img.png"
+                src={register_images}
                 className="hidden w-full md:block"
                 alt="Register Illustration"
               />
