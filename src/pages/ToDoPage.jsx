@@ -9,6 +9,8 @@ import { useLocation, useParams } from "react-router";
 
 export default function ToDoPage() {
     const [progress, setProgress] = useState(false)
+    const [selectedTaskId, setSelectedTaskId] = useState(null);
+
     // const [userId, setUserId] = useState("");
     // const [todoData, setTodoData] = useState();
     //   const token = getAceAccessToken();
@@ -35,6 +37,12 @@ export default function ToDoPage() {
     const todoInWorkspaces = (allTodoTask || []).filter((t) => t.workspace_id === id)
     console.log('todoInWorkspaces', todoInWorkspaces)
     
+
+    // const handleTaskClick = (taskId) => {
+    //     console.log("Clicked Task ID:", taskId); 
+    //     setSelectedTaskId(taskId);
+    // };
+
     return (
             <div className={"w-auto p-8 bg-background dark:bg-gray-900"}>
                 <NavbarForworkShop title={"To Do List"} link={`/todo/${id}`}/>
@@ -44,7 +52,7 @@ export default function ToDoPage() {
                 </div>
 
                     <div className={"lg:w-[780px] w-96 lg:mt-0 md:mt-16 overscroll-none hidden md:block md:h-[600px] lg:h-[570px] 2xl:h-auto bg-gray-50 dark:bg-gray-700  overflow-hidden rounded-2xl overflow-y-scroll scroll-smooth "}>
-                        {progress &&(<TodoCardDetail/>)}
+                        {progress &&(<TodoCardDetail />)}
                     </div>
 
 

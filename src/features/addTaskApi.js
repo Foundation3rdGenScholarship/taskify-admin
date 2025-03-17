@@ -30,18 +30,18 @@ export const addTaskApi = apiSlice.injectEndpoints({
                 };
             }
         }),
-        deleteTask: builder.query({
-            query:(task_id) =>{
+        deleteTask: builder.mutation({
+            query: (task_id) => {
                 const token = getAceAccessToken();
-                return{
+                return {
                     url: `/tasks?id=eq.${task_id}`,
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                    }
-                }
-            }
+                        "Content-Type": "application/json",
+                    },
+                };
+            },
         }),
         getTodoTask:builder.query({
             query:({userId,limit,offset}) =>({
@@ -53,9 +53,23 @@ export const addTaskApi = apiSlice.injectEndpoints({
                 }
             })
 
-        })
+        }),
+        updateTask: builder.mutation({
+            query: ({ taskId, updatedData }) => {
+                const token = getAceAccessToken();
+                return {
+                    url: `/tasks?id=eq.${taskId}`,
+                    method: "PATCH",
+                    body: updatedData,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                };
+            },
+        }),
 
     })
 });
 
-export const { useCreateTaskMutation ,useGetTasksQuery, useDeleteTaskQuery,useGetTodoTaskQuery } = addTaskApi;
+export const { useCreateTaskMutation ,useGetTasksQuery, useDeleteTaskQuery,useGetTodoTaskQuery, useUpdateTaskMutation } = addTaskApi;

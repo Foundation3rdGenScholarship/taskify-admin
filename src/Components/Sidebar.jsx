@@ -88,16 +88,7 @@ export default function Sidebar() {
             <div>About Taskify</div>
           </NavLink>
         </div>
-        <NavLink className={" hover:bg-primary"}>
-          <div
-            className={
-              "flex justify-start items-center space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background dark:text-white "
-            }
-          >
-            <TiArrowLeftOutline />
-            <div>Log Out</div>
-          </div>
-        </NavLink>
+        
       </nav>
       <div className={"absolute top-4 z-10"}>
       <button

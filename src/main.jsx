@@ -59,7 +59,7 @@ ReactDOM.createRoot(root).render(
             <Route path="/notification" element={<NotificationPage/>}/>
             <Route path="/archive" element={<Archive/>}/>
             <Route path="/editprofilepage" element={<EditProfilePage/>}/>
-            <Route path="/tododetail" element={<TodoCardDetail/>}></Route>
+            <Route path="/tododetail/:id" element={<TodoCardDetail/>}></Route>
             <Route path="/CompleteDetail" element={<CompletedCardDetail/>}></Route>
           </Route>
           <Route path="/login" element={<LoginPage />} />

@@ -16,7 +16,8 @@ import pich1 from "../assets/pich1.png";
 import lyzhia1 from "../assets/lyzhia1.png";
 import roith from "../assets/roith.png";
 import pengseang from "../assets/pengseang.png";
-import teachers from "../assets/teachers.png"
+import teachers from "../assets/teachers.png";
+import narak from "../assets/narak.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // Import AOS styles
 import React, { useEffect } from 'react'; 
@@ -49,7 +50,7 @@ export function AboutUs() {
       position: "FRONT-END",
     },
     {
-      img: ly,
+      img: narak,
       firstName: "LENG",
       lastName: "NARAK",
       job: "Student",
