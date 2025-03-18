@@ -6,6 +6,7 @@ import EditProfilePage from "./EditProfilePage";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useGetMeQuery } from "../features/auth/authApiSlice";
+import archive from "./Archive";
 
 export default function Userpf() {
   const [narMe, setNavMe] = useState({});
@@ -133,12 +134,14 @@ export default function Userpf() {
           </div>
         </div>
         <div className="flex items-end space-x-2 md:space-x-4">
+         <Link to ="/archive">
           <button className="flex items-center px-3 py-2 text-white transition-all duration-500 rounded-md bg-primary hover:bg-blue-600 ">
             <span className="mr-2">
               <FaRegWindowRestore />{" "}
             </span>
             View Archive
           </button>
+          </Link>
           <Link to="/editprofilepage">
             <button className="flex items-center px-3 py-2 text-white transition-all duration-500 rounded-md bg-primary hover:bg-blue-600 ">
               <span className="mr-2">
