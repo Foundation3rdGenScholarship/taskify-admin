@@ -173,8 +173,6 @@
 //                 </div>
 //               </div>
 
-             
-              
 //             </Form>
 //           </Formik>
 //         </div>
@@ -184,26 +182,32 @@
 // }
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGreaterThan, faXmark, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGreaterThan,
+  faXmark,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
-
 export default function EditTaskPupUp({ isOpen, onClose, token }) {
-  console.log("isopen",isOpen);
-  console.log("token",token)
-  if (!isOpen) return null;
+  console.log("isopen", isOpen);
+  console.log("token", token);
 
   const initialValues = {
-    title: "",
-    note: "",
-    file: null,
-    due_date: "",
-    reminder_date: "",
-    assignee: "",
-    category_id: "",
-    checklist: [{ text: "Sketch low-fidelity wireframes", checked: false }],
+    title: "{{$randomBankAccountName}}, input your task title here",
+    note: "{{$randomCatchPhraseAdjective}}, input your task note here",
+    start_date: "2025-Mar-1",
+    due_date: "2025-Mar-10",
+    reminder_date: "2025-Mar-8",
+    updated_at: "now()",
+    is_completed: false,
+    is_important: true,
+    is_archived: false,
+    is_deleted: false,
+    category_id: "82189f0f-055a-4fd0-b12b-87652302f81f",
+    position: 1,
   };
 
   const validationSchema = Yup.object().shape({
@@ -220,7 +224,11 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
   ]);
 
   const toggleCompletion = (id) => {
-    setTasks(tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task)));
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
   const removeTask = (id) => {
@@ -229,7 +237,7 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
 
   return (
     <>
-      <div className="fixed inset-0 top-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 font-roboto ">
+      <div className="flex items-center justify-center bg-black bg-opacity-50 font-roboto">
         <div className="bg-white dark:bg-gray-900 dark:text-gray-200 p-6 rounded-lg shadow-lg w-[95%] max-w-5xl relative  flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between text-xl font-semibold">
@@ -241,8 +249,9 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
               <span className="pr-1">Design User Interface</span>
             </h3>
             <button
-            onClick={onClose}
-            className="text-xl text-gray-500 hover:text-primary dark:text-gray-400 ">
+              onClick={onClose}
+              className="text-xl text-gray-500 hover:text-primary dark:text-gray-400 "
+            >
               <FontAwesomeIcon icon={faXmark} />
             </button>
           </div>
@@ -262,19 +271,27 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
                 <div>
                   {/* Task Title */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary dark:text-white">Change Task Title</label>
+                    <label className="font-medium text-primary dark:text-white">
+                      Change Task Title
+                    </label>
                     <Field
                       type="text"
                       placeholder="Your new task title"
                       name="title"
                       className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
                     />
-                    <ErrorMessage name="title" component="div" className="text-sm text-red-500" />
+                    <ErrorMessage
+                      name="title"
+                      component="div"
+                      className="text-sm text-red-500"
+                    />
                   </div>
 
                   {/* Description */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary dark:text-white">Change Description</label>
+                    <label className="font-medium text-primary dark:text-white">
+                      Change Description
+                    </label>
                     <Field
                       as="textarea"
                       name="description"
@@ -285,23 +302,45 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
 
                   {/* File Upload */}
                   <div className="flex flex-col items-center p-6 pb-5 border rounded-lg xl:pb-7 dark:bg-gray-800 border-primary dark:text-secondary">
-                    <label htmlFor="dropzone-file" className="flex flex-col items-center cursor-pointer">
-                      <FaCloudUploadAlt className="mb-2 text-gray-400" size={30} />
-                      <span className="text-sm text-gray-400">Click to upload your file</span>
-                      <span className="text-xs text-gray-500">Max. File Size: 30MB</span>
-                      <input id="dropzone-file" type="file" className="hidden" />
+                    <label
+                      htmlFor="dropzone-file"
+                      className="flex flex-col items-center cursor-pointer"
+                    >
+                      <FaCloudUploadAlt
+                        className="mb-2 text-gray-400"
+                        size={30}
+                      />
+                      <span className="text-sm text-gray-400">
+                        Click to upload your file
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        Max. File Size: 30MB
+                      </span>
+                      <input
+                        id="dropzone-file"
+                        type="file"
+                        className="hidden"
+                      />
                     </label>
-                    <button type="button" className="px-4 py-2 mt-4 text-white rounded-md bg-primary hover:bg-blue-600">
+                    <button
+                      type="button"
+                      className="px-4 py-2 mt-4 text-white rounded-md bg-primary hover:bg-blue-600"
+                    >
                       Browse File
                     </button>
                   </div>
 
                   {/* Checklist */}
                   <div className="p-4 pb-5 mt-3 border rounded-lg xl:pb-7 border-primary dark:bg-gray-800">
-                    <h2 className="text-lg font-semibold dark:text-white text-primary">Checklist</h2>
+                    <h2 className="text-lg font-semibold dark:text-white text-primary">
+                      Checklist
+                    </h2>
                     <ul className="mt-4">
                       {tasks.map((task) => (
-                        <li key={task.id} className="flex items-center justify-between py-2">
+                        <li
+                          key={task.id}
+                          className="flex items-center justify-between py-2"
+                        >
                           <label className="flex items-center space-x-2">
                             <input
                               type="checkbox"
@@ -311,7 +350,10 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
                             />
                             <span>{task.text}</span>
                           </label>
-                          <button onClick={() => removeTask(task.id)} className="text-red-500">
+                          <button
+                            onClick={() => removeTask(task.id)}
+                            className="text-red-500"
+                          >
                             <FontAwesomeIcon icon={faTrash} />
                           </button>
                         </li>
@@ -324,29 +366,92 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
                 <div>
                   {/* Due Date */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary dark:text-white">Due Date</label>
-                    <Field type="date" name="due_date" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary" />
+                    <label className="font-medium text-primary dark:text-white">
+                      Due Date
+                    </label>
+                    <Field
+                      type="date"
+                      name="due_date"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    />
                   </div>
 
                   {/* Reminder Date */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary dark:text-white">Set Reminder</label>
-                    <Field type="date" name="reminder_date" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary" />
+                    <label className="font-medium text-primary dark:text-white">
+                      Set Reminder
+                    </label>
+                    <Field
+                      type="date"
+                      name="reminder_date"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    />
                   </div>
 
                   {/* Assignee */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">Assign to</label>
-                    <Field as="select" name="assignee" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
+                    <label className="font-medium text-primary">
+                      Assign to
+                    </label>
+                    <Field
+                      as="select"
+                      name="assignee"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    >
                       <option value="">Select</option>
                       <option value="Mr. Say Seyha">Mr. Say Seyha</option>
                     </Field>
                   </div>
                   <div className="pb-5 xl:pb-7">
+                    <label className="font-medium text-primary">
+                      is_completed
+                    </label>
+                    <Field
+                      as="select"
+                      name="assignee"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    >
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                    </Field>
+                  </div>
+
+                  <div className="pb-5 xl:pb-7">
+                    <label className="font-medium text-primary">
+                      is_imporstand
+                    </label>
+                    <Field
+                      as="select"
+                      name="assignee"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    >
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                    </Field>
+                  </div>
+
+                  <div className="pb-5 xl:pb-7">
+                    <label className="font-medium text-primary">
+                      is_archive
+                    </label>
+                    <Field
+                      as="select"
+                      name="assignee"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    >
+                      <option value="true">true</option>
+                      <option value="false">false</option>
+                    </Field>
+                  </div>
+                  <div className="pb-5 xl:pb-7">
                     <label className="font-medium text-primary">Category</label>
-                    <Field as="select" name="category_id" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
-                    <option value="">Select Category</option>
-                  {/* {categories.map((cat) => (
+                    <Field
+                      as="select"
+                      name="category_id"
+                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
+                    >
+                      <option value="">Select Category</option>
+                      {/* {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
                       {cat.title}
                     </option>
@@ -361,7 +466,10 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
                 <button className="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg dark:bg-gray-700 dark:text-white">
                   Cancel
                 </button>
-                <button type="submit" className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-blue-700">
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-blue-700"
+                >
                   Save Task
                 </button>
               </div>
@@ -372,4 +480,3 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
     </>
   );
 }
-

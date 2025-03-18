@@ -57,6 +57,7 @@ import CheckBoxinProgess from "./CheckBoxinProgess.jsx";
 import EditTaskPopup from "../Components/EditTaskPupUp.jsx"; // Import modal component
 import { NavLink } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router";
 
 export default function TodoCardDetail() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // State for modal visibility
@@ -117,20 +118,20 @@ export default function TodoCardDetail() {
           >
             Delete Task
           </button>
-          <button
-            onClick={() => setIsEditModalOpen(true)} // Open modal on click
+          <Link to="/edittask" 
+            // onClick={() => setIsEditModalOpen(true)} // Open modal on click
             className={"px-3 rounded-md border h-[43px] w-[132px] bg-primary text-background font-bold"}
           >
             Edit Task
-          </button>
+          </Link>
         </div>
       </div>
 
       {/* Modal Popup */}
-      <EditTaskPopup 
+      {/* <EditTaskPopup 
         isOpen={isEditModalOpen} 
         onClose={() => setIsEditModalOpen(false)} 
-      />
+      /> */}
     </div>
   );
 }
