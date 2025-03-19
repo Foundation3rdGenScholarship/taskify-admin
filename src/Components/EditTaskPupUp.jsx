@@ -189,6 +189,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { getAceAccessToken } from "../lib/secureLocalStorage";
+import { Link } from "react-router";
 
 
 export default function EditTaskPupUp() {
@@ -330,14 +331,14 @@ export default function EditTaskPupUp() {
 
                   {/* Assignee */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">Assign to</label>
+                    <label className="font-medium text-primary dark:text-white">Assign to</label>
                     <Field as="select" name="assignee" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
                       <option value="">Select</option>
                       <option value="Mr. Say Seyha">Mr. Say Seyha</option>
                     </Field>
                   </div>
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">Category</label>
+                    <label className="font-medium text-primary dark:text-white">Category</label>
                     <Field as="select" name="category_id" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
                     <option value="">Select Category</option>
                   {/* {categories.map((cat) => (
@@ -352,9 +353,9 @@ export default function EditTaskPupUp() {
 
               {/* Buttons */}
               <div className="flex justify-end space-x-4">
-                <button className="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg dark:bg-gray-700 dark:text-white">
+                <Link to="/tododetail" className="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg dark:bg-gray-700 dark:text-white">
                   Cancel
-                </button>
+                </Link>
                 <button type="submit" className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-blue-700">
                   Save Task
                 </button>

@@ -95,7 +95,7 @@ console.log('status', status)
   return (
     <>
       <div className="flex bg-gray-100  border">
-        <section className="flex-1 p-6 bg-white dark:bg-[#121321] ">
+        <section className="flex-1 p-6 bg-background dark:bg-[#121321] ">
           {/* Tabs */}
           <div className="flex px-3 py-3 space-x-10 bg-gray-100 dark:bg-gray-500 border-b-2 md:justify-around rounded-xl ">
             <button

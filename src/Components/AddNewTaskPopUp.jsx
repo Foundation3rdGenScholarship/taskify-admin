@@ -124,10 +124,10 @@ return (
       <div
       className="
         absolute top-[150px] left-1/2 -translate-x-1/2
-        max-w-[550px] w-full bg-white dark:bg-gray-500 
+        max-w-[550px] w-full  
         rounded-lg shadow-lg p-[25px]
       ">
-      <div className="max-w-[550px] w-full bg-white dark:bg-gray-500 rounded-lg shadow-lg p-[25px] relative">
+      <div className="max-w-[550px] w-full bg-white dark:bg-[#292A2B] rounded-lg shadow-lg p-[25px] relative">
         {/* Header */}
         <div className="pb-2 flex justify-between">
           <div className="grid pr-10">
@@ -165,7 +165,7 @@ return (
                 name="title"
                 type="text"
                 placeholder="Put your workspace name..."
-                className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
               />
               <ErrorMessage
                 name="title"
@@ -186,7 +186,7 @@ return (
                 name="due_date"
                 type="date"
                 placeholder="dd/mm/yyyy"
-                className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
               />
               <ErrorMessage
                 name="due_date"
@@ -207,7 +207,7 @@ return (
                 name="start_date"
                 type="date"
                 placeholder="dd/mm/yyyy"
-                className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
               />
               <ErrorMessage
                 name="start_date"
@@ -228,7 +228,7 @@ return (
                 name="reminder_date"
                 type="date"
                 placeholder="dd/mm/yyyy"
-                className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
               />
               <ErrorMessage
                 name="reminder_date"
@@ -249,7 +249,7 @@ return (
                 name="note"
                 type="text"
                 placeholder="Your member"
-                className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
               />
               <ErrorMessage
                 name="note"
@@ -272,7 +272,7 @@ return (
                 <Field
                   as="select"
                   name="category_id"
-                  className="w-full p-2 border dark:text-gray-300 dark:bg-gray-800 border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
+                  className="w-full p-2 border dark:text-gray-300 dark:bg-[#242424] border-primary rounded-md text-txt14 xl:text-txt16 focus:outline-none focus:border-primary focus:ring-1 focus:ring-blue-300"
                 >
                   <option value="">Select Category</option>
                   {categories.map((cat) => (

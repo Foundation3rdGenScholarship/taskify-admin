@@ -31,13 +31,13 @@ const AddMemberForm = ({ isOpen, closeModal }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className="fixed inset-0 z-9 flex items-center justify-center bg-black bg-opacity-50"
       onClick={closeModal}
     >
       <div
         className="
           absolute top-[200px] left-1/2 -translate-x-1/2
-          max-w-[550px] w-full bg-white dark:bg-gray-500 
+          max-w-[550px] w-full bg-white dark:bg-[#292A2B] 
           rounded-lg shadow-lg p-[25px]
         "
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
@@ -72,7 +72,7 @@ const AddMemberForm = ({ isOpen, closeModal }) => {
                   type="email"
                   name="email"
                   placeholder="Enter member's email"
-                  className="border rounded-[8px] p-2 w-full h-[40px] dark:bg-gray-400 focus:outline-none dark:text-white focus:ring-2 focus:ring-blue-500 dark:placeholder:text-white"
+                  className="border rounded-[8px] p-2 focus:border-primary border-primary focus:ring-1 focus:ring-blue-300 w-full h-[40px] dark:bg-[#242424] focus:outline-none dark:text-white dark:placeholder:text-gray-300"
                 />
                 <div className="min-h-[20px]">
                   <ErrorMessage

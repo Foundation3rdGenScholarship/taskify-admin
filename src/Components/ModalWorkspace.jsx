@@ -108,8 +108,8 @@ export default function ModalWorkspace({ isOpen, onClose,token, onResponse }) {
 
 
   return (
-    <div className="sticky top-0 h-[100vh] bottom-0 inset-0 z-50 flex items-center justify-center bg-black  bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg w-[90%] lg:w-[80%] xl:w-[75%]  sticky top-0 bottom-0">
+    <div className="sticky top-0 h-[100vh] bottom-0 inset-0 z-9 flex items-center justify-center bg-black  bg-opacity-50">
+      <div className="bg-white dark:bg-[#292A2B] rounded-lg shadow-lg w-[90%] lg:w-[80%] xl:w-[75%]  sticky top-0 bottom-0">
         
         {/* Close Button */}
         <button 
@@ -124,9 +124,9 @@ export default function ModalWorkspace({ isOpen, onClose,token, onResponse }) {
         
           {/* Left: Form */}
           <div>
-          <div className="lg:pb-8 ">
-          <h2 className="mb-4 text-xl font-bold lg:text-2xl xl:text-3xl text-primary">Let's built a Workspace</h2>
-          <p className="text-txt14 py-3 lg:text-txt-16 xl:text-txt18 text-txtPrimary">Boost your productivity by making it easier for everyone to access boards in one location.</p>
+          <div className="lg:pb-3 ">
+          <h2 className=" text-xl font-bold lg:text-2xl xl:text-3xl text-primary dark:text-white">Let's built a Workspace</h2>
+          <p className="text-txt14 py-3 lg:text-txt-16 xl:text-txt18 text-txtPrimary dark:text-gray-100">Boost your productivity by making it easier for everyone to access boards in one location.</p>
           </div>
             <Formik
               initialValues={initialValues}
@@ -138,25 +138,26 @@ export default function ModalWorkspace({ isOpen, onClose,token, onResponse }) {
             >
               {({ handleSubmit }) => (
                 <Form onSubmit={handleSubmit} className="flex flex-col">
-                 <div className="pb-5 xl:pb-7">
-                  <label htmlFor="title" className="font-semibold text-primary text-txt16 lg:text-txt18 xl:text-txt20">Workspace name</label>
+                 <div className="py-3 xl:pb-7">
+                  <label htmlFor="title" className="font-semibold text-primary dark:text-white text-txt16 lg:text-txt18 xl:text-txt20 ">Workspace name</label>
                  <Field 
                     name="title" 
                     type="text" 
                     placeholder="Put your workspace name... " 
-                    className="w-full p-1 border rounded-md xl:p-2 xl:my-3 text-txt14 md:text-txt16 xl:text-txt18"
+                    className="w-full mt-2  dark:bg-[#242424] p-1 border rounded-md dark:border-none xl:p-2 xl:my-3 text-txt14 focus:outline-none focus:ring-0 dark:text-gray-300 md:text-txt16 xl:text-txt18"
                   />
                   <ErrorMessage name="name" component="div" className="text-sm text-red-500" />
-                  <p className="text-txt14 md:text-txt16 xl:text-txt18 text-txtPrimary">This is the name of your company, team or organization.</p>
+                  <p className="text-txt14 font-thin md:text-txt16 xl:text-txt18 text-txtPrimary dark:text-gray-100">This is the name of your company, team or organization.</p>
                  </div>
                   <div>
-                    <label htmlFor="discription" className="font-semibold text-primary text-txt16 lg:text-txt18 xl:text-txt20">Workspace description (Optional)</label>
-                  <Field 
-                    name="description"
-                    as="textarea"
-                    placeholder="Put your workspace name..."
-                    className="w-full p-1 border rounded-md h-28 xl:my-3 xl:p-2 text-txt14 md:text-txt16 xl:text-txt18"
-                  />
+                    <label htmlFor="discription" className="font-semibold text-primary dark:text-white dak text-txt16 lg:text-txt18 xl:text-txt20">Workspace description (Optional)</label>
+                 <Field 
+  name="description"
+  as="textarea"
+  placeholder="Put your workspace name..."
+  className="w-full p-1 mt-2 dark:bg-[#242424] dark:border-none dark:text-gray-300 focus:outline-none focus:ring-0 border rounded-md h-28 xl:my-3 xl:p-2 text-txt14 md:text-txt16 xl:text-txt18"
+/>
+
                   </div>
                   <button 
                     type="submit" 

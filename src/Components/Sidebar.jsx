@@ -22,10 +22,10 @@ export default function Sidebar() {
     <>
       <nav
         className={
-          " bg-white dark:bg-gray-800 md:flex flex-col h-[100%] text-txt16  place-content-between w-1/5 sticky top-20 bottom-0 gap-y-[330px] py-2 hidden"
+          " bg-white dark:bg-gray-800  md:flex flex-col h-auto text-txt16  place-content-between w-1/5   gap-y-[330px] py-2 hidden"
         }
       >
-        <div className="flex flex-row mt-6 md:flex-col dark:text-white">
+        <div className="flex sticky top-[100px] flex-row mt-6 md:flex-col dark:text-white">
         <Link
           to="/"
             className={
