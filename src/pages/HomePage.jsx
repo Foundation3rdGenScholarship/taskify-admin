@@ -188,7 +188,7 @@ export default function HomePage() {
                   transition={{ duration: 0.8 }}
                   viewport={{ once: false }}
                 >
-                  Let's sign up!
+                  <Link to="/register">Let's sign up!</Link>
                 </motion.button>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function HomePage() {
           </motion.div>
         </motion.section>
       </section>
-      {getAceAccessToken() && (
+      {/* {getAceAccessToken() && (
         <div className="sticky right-0 bottom-2 rounded-3xl">
           <div className="absolute right-0 bottom-4 bg-primary rounded-3xl">
             <a
@@ -437,7 +437,7 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }

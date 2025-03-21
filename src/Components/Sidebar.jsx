@@ -9,147 +9,85 @@ import { AiOutlineClose } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
 import { TiArrowLeftOutline } from "react-icons/ti";
 import { useState } from "react";
-
-import { flushSync } from "react-dom";
+import {
+  getAceAccessToken,
+  removeAccessToken,
+} from "../lib/secureLocalStorage";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleLogout = () => {
+    removeAccessToken(); // Remove the access token
+    window.location.reload(); // Reload the page to reflect the change
+  };
+
   return (
     <>
       <nav
         className={
-          " bg-white dark:bg-gray-800  md:flex flex-col h-auto text-txt16  place-content-between w-1/5   gap-y-[330px] py-2 hidden"
+          "bg-white h-auto  top-0  dark:bg-gray-800 md:flex flex-col text-txt16 place-content-between w-1/5 bottom-0 gap-y-[330px] py-2 hidden"
         }
       >
-        <div className="flex sticky top-[100px] flex-row mt-6 md:flex-col dark:text-white">
-        <Link
-          to="/"
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background "
-            }
+        <div className="flex flex-row mt-6 md:flex-col dark:text-white">
+          <Link
+            to="/"
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
           >
-            <MdOutlineLeaderboard
-              className={"w-5 h-5"}
-              width={"10"}
-              height={"10"}
-            />
+            <MdOutlineLeaderboard className="w-5 h-5" />
             <div>Home Page</div>
           </Link>
           <Link
-          to="/dashboard"
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background "
-            }
+            to="/dashboard"
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
           >
-            <MdOutlineLeaderboard
-              className={"w-5 h-5"}
-              width={"10"}
-              height={"10"}
-            />
+            <MdOutlineLeaderboard className="w-5 h-5" />
             <div>Workspace</div>
           </Link>
-          <Link
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
-            }
+          {/* <Link
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
             to="/member"
           >
-            <IoPersonOutline className={"w-5 h-5"} width={"10"} height={"10"} />
+            <IoPersonOutline className="w-5 h-5" />
             <div>Members</div>
-          </Link>
+          </Link> */}
           <Link
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
-            }
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
             to="/userpf"
           >
-            <IoSettingsOutline
-              className={"w-5 h-5"}
-              width={"10"}
-              height={"10"}
-            />
+            <IoSettingsOutline className="w-5 h-5" />
             <div>User Profile</div>
           </Link>
-          <Link 
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
-            }
+          <Link
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
             to="/notification"
           >
-            <IoMdNotificationsOutline
-              className={"w-5 h-5"}
-              width={"10"}
-              height={"10"}
-            />
+            <IoMdNotificationsOutline className="w-5 h-5" />
             <div>Notifications</div>
           </Link>
           <Link
-            className={
-              "flex justify-start space-x-4 pl-4 align-middle py-4 transition-all duration-500 hover:bg-primary hover:text-background"
-            }
+            className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-yellow-200 hover:text-gray-900"
             to="/aboutus"
           >
-            <IoIosHelpCircleOutline
-              className={"w-5 h-5"}
-              width={"10"}
-              height={"10"}
-            />
+            <IoIosHelpCircleOutline className="w-5 h-5 transition-transform duration-500 hover:scale-110" />
             <div>About Taskify</div>
           </Link>
-        </div>
-        
-      </nav>
-      <div className={"absolute top-4 z-10"}>
-      <button
-        className="flex gap-10 p-5 mt-20 text-2xl rounded-full text-primary md:hidden"
-        onClick={toggleMenu}
-      >
-        {isOpen ? "" : <TiThMenu/> } {/* Changes icon when open/closed */}
-      </button></div>
-      {isOpen && (
-        <div className="absolute ">
-          <nav className="fixed bottom-0 z-10 flex flex-col w-1/3 h-full py-2 mt-2 transition-transform bg-background text-txt16 place-content-between top-20 gap-y-10 md:hidden min-w-56">
-            {/* Close Button */}
+
+          {getAceAccessToken() && (
             <button
-              className="absolute top-0 right-0 flex gap-10 p-5 text-2xl rounded-full text-primary"
-              onClick={() =>{toggleMenu(), console.log(isOpen)}}
+              className="flex justify-start py-4 pl-4 space-x-4 align-middle transition-all duration-500 hover:bg-primary hover:text-background"
+              onClick={handleLogout}
             >
-              <AiOutlineClose/> 
+              <TiArrowLeftOutline className="w-5 h-5" />
+              <div>Log Out</div>
             </button>
-            {/* Navigation Links */}
-            <div className="flex flex-col mt-10 ">
-             <Link to="/" className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" >
-                <MdOutlineLeaderboard className="w-5 h-5" />
-                <div>Home Page</div>
-              </Link>
-              <Link to="/dashboard"  className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" >
-                <MdOutlineLeaderboard className="w-5 h-5" />
-                <div>Workspace</div>
-              </Link>
-              <Link  className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/member">
-                <IoPersonOutline className="w-5 h-5" />
-                <div>Members</div>
-              </Link>
-              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/userpf">
-                <IoSettingsOutline className="w-5 h-5" />
-                <div>user Profile</div>
-              </Link>
-              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/notification">
-                <IoMdNotificationsOutline className="w-5 h-5" />
-                <div>Notifications</div>
-              </Link>
-              <Link className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background" to="/aboutus">
-                <IoIosHelpCircleOutline className="w-5 h-5" />
-                <div>About Taskify</div>
-              </Link>
-            </div>
-          </nav>
+          )}
         </div>
-      )}
+      </nav>
     </>
   );
 }

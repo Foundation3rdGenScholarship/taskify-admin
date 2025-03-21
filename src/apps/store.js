@@ -1,15 +1,15 @@
-
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "../features/api/apiSlice";
+import { counterSlice } from "../features/counter/counterSlic"; // ✅ FIXED: Import the reducer
 
 export const store = configureStore({
   reducer: {
-    // Add the generated reducer as a specific top-level slice
     [apiSlice.reducerPath]: apiSlice.reducer,
+    [counterSlice.reducerPath]: counterSlice.reducer, // ✅ FIXED: Use the correct reducer reference
   },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) =>getDefaultMiddleware().concat(apiSlice.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
+
 setupListeners(store.dispatch);

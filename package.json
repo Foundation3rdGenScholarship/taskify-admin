@@ -20,6 +20,7 @@
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.6.0",
     "aos": "^2.3.4",
+    "axios": "^1.8.4",
     "date-fns": "^4.1.0",
     "flowbite-react": "^0.10.2",
     "formik": "^2.4.6",

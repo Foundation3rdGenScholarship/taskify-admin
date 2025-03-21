@@ -1,180 +1,227 @@
 import React, { useState, useEffect } from "react";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { IoIosSunny } from "react-icons/io";
 import { BsMoonStarsFill } from "react-icons/bs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import TaskifyLogo from "../assets/TaskifyLogo1.png";
-import pengseang from "../assets/pengseang.png";
 import { useGetMeQuery } from "../features/auth/authApiSlice";
-import { getAceAccessToken } from "../lib/secureLocalStorage";
+import {
+  getAceAccessToken,
+  removeAccessToken,
+} from "../lib/secureLocalStorage";
+import { TiArrowLeftOutline } from "react-icons/ti";
+import { MdOutlineLeaderboard } from "react-icons/md";
+import { IoPersonOutline } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoIosHelpCircleOutline } from "react-icons/io";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
-  console.log(darkMode);
-  console.log(localStorage);
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
-      console.log(document);
       localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-  console.log(document);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
 
-  //get me
-  const [narMe, setNavMe] = useState({});
-  const [name, setName] = useState("");
   const { data } = useGetMeQuery();
+  const [name, setName] = useState("");
 
   useEffect(() => {
-    if (data) {
-      setNavMe(data);
+    if (data?.family_name && data?.given_name) {
+      setName(
+        `${data.family_name.charAt(0).toUpperCase()}${data.given_name
+          .charAt(0)
+          .toUpperCase()}`
+      );
     }
   }, [data]);
-
-  useEffect(() => {
-    if (narMe?.family_name && narMe?.given_name) {
-      const firstLetter1 = narMe.family_name.charAt(0).toUpperCase();
-      const firstLetter2 = narMe.given_name.charAt(0).toUpperCase();
-      setName(`${firstLetter1}${firstLetter2}`);
-    }
-  }, [narMe]);
-
-  console.log(name);
+  const handleLogout = () => {
+    removeAccessToken(); // Remove the access token
+    window.location.reload(); // Reload the page to reflect the change
+  };
 
   return (
-    <div className="flex items-center h-[86px] bg-primary text-white px-4 min-w-80 sticky top-0 z-10">
+    <nav className="sticky top-0 z-50 bg-primary text-white px-4 h-[86px] flex items-center w-full shadow-md">
       <div className="flex items-center justify-between w-full max-w-[1200px] mx-auto">
         {/* Logo */}
-        <div>
-          <img src={TaskifyLogo} className="w-[175px] z-9" alt="Logo" />
-        </div>
+        <img src={TaskifyLogo} className="w-[175px] z-10" alt="Taskify Logo" />
 
         {/* Desktop Buttons */}
-        <div className={`hidden gap-4 sm:flex flex-col sm:flex-row`}>
+        <div className="items-center hidden gap-4 sm:flex">
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="relative flex items-center justify-center px-1.5 overflow-hidden bg-white border border-white rounded-full"
+            className="p-2 bg-white border border-white rounded-full"
+            aria-label="Toggle dark mode"
           >
             <motion.div
-              key={darkMode ? "moon" : "sun"} // Ensure smooth transition when toggling
+              key={darkMode ? "moon" : "sun"}
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               {darkMode ? (
-                <BsMoonStarsFill size={30} color="gray" />
+                <BsMoonStarsFill size={26} color="gray" />
               ) : (
-                <IoIosSunny size={30} color="gold" />
+                <IoIosSunny size={26} color="gold" />
               )}
             </motion.div>
           </button>
-          <div className="flex items-center justify-center">
-            {getAceAccessToken() && name && (
-              <div className="flex gap-2"> 
+
+          {getAceAccessToken() ? (
+            <div className="flex items-center gap-2">
               <Link to="/dashboard">
-                  <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
-                    Go to dashboard
-                  </button>
-                </Link>
-              <div className="flex items-center bg-white rounded-full w-[43.6px] h-[41.6px] justify-center">
-                <Link to="/userpf" className="flex items-center justify-center">
-                  <h1 className="flex font-bold align-middle text-primary text-txt20">
-                    {name}
-                  </h1>
-                </Link>
-              </div>
-              </div>
-             
-            )}
-            {!getAceAccessToken() && !name && (
-              <div className="flex gap-2">
-                <Link to="/register">
-                  <button className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16">
-                    Create Account
-                  </button>
-                </Link>
-                <Link
-                  to="login"
-                  className="px-4 py-2 font-medium transition-all duration-500 bg-white border rounded-full text-primary hover:bg-secondary text-txt16"
-                >
-                  Login your account
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="flex gap-10 sm:hidden">
-          <button className="text-2xl text-white" onClick={toggleMenu}>
-            {isOpen ? "✖" : "☰"} {/* Changes icon when open/closed */}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu (Dropdown) */}
-      {isOpen && (
-        <div className="absolute top-[86px] left-0 w-full bg-primary flex flex-col items-center py-4 sm:hidden">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="relative flex items-center justify-center p-1.5 overflow-hidden bg-white border border-white rounded-full"
-          >
-            <motion.div
-              key={darkMode ? "moon" : "sun"} // Ensure smooth transition when toggling
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              {darkMode ? (
-                <BsMoonStarsFill size={30} color="gray" />
-              ) : (
-                <IoIosSunny size={30} color="gold" />
-              )}
-            </motion.div>
-          </button>
-          <Link to="/register">
-            <button className="px-4 py-2 my-1 transition-all duration-500 ease-in-out bg-white border rounded text-primary hover:bg-secondary">
-              Create Account
-            </button>
-          </Link>
-
-          {name && (
-            <div>
-              <Link
-                to="/userpf"
-                className="relative flex items-center justify-center px-1.5 overflow-hidden bg-white border border-white rounded-full"
-              >
-                <h1 className="text-primary">{name}</h1>
+                <button className="px-4 py-2 font-medium transition bg-white rounded-full text-primary hover:bg-secondary">
+                  Dashboard
+                </button>
+              </Link>
+              <Link to="/userpf">
+                <div className="w-[43px] h-[41px] bg-white text-primary font-bold flex items-center justify-center rounded-full">
+                  {name}
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Link to="/register">
+                <button className="px-4 py-2 font-medium transition bg-white rounded-full text-primary hover:bg-secondary">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to="/login">
+                <button className="px-4 py-2 font-medium transition bg-white rounded-full text-primary hover:bg-secondary">
+                  Login
+                </button>
               </Link>
             </div>
           )}
-          {!name && (
-            <Link
-              to="login"
-              className="px-4 my-1 transition-all duration-500 ease-in-out bg-white border rounded h-[38px] text-primary hover:bg-secondary"
-            >
-              Login your account
-            </Link>
-          )}
         </div>
-      )}
-    </div>
+
+        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button */}
+        <button
+          aria-label="Toggle mobile menu"
+          className="fixed z-20 text-2xl sm:hidden top-4 right-4" // fixed positioning
+          onClick={toggleMenu}
+        >
+          {isOpen ? "✖" : "☰"} {/* Toggle button text based on the state */}
+        </button>
+
+        {/* Mobile Menu (Dropdown) */}
+        <div
+          className={`fixed top-0 left-0 w-full h-screen bg-primary flex flex-col items-center pt-24 transition-transform duration-300 ease-in-out ${
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          } sm:hidden`}
+        >
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2 bg-white border border-white rounded-full"
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? (
+              <BsMoonStarsFill size={26} color="gray" />
+            ) : (
+              <IoIosSunny size={26} color="gold" />
+            )}
+          </button>
+
+          {/* Links and Buttons */}
+          <div className="flex flex-col items-center gap-4 mt-6">
+            {!getAceAccessToken() ? (
+              <>
+                <Link to="/register">
+                  <button className="px-4 py-2 font-medium transition bg-white rounded text-primary hover:bg-secondary">
+                    Sign Up
+                  </button>
+                </Link>
+                <Link to="/login">
+                  <button className="px-4 py-2 font-medium transition bg-white rounded text-primary hover:bg-secondary">
+                    Login
+                  </button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/dashboard">
+                  <button className="px-4 py-2 font-medium transition bg-white rounded text-primary hover:bg-secondary">
+                    Dashboard
+                  </button>
+                </Link>
+                <Link to="/userpf">
+                  <div className="w-[43px] h-[41px] bg-white text-primary font-bold flex items-center justify-center rounded-full">
+                    {name}
+                  </div>
+                </Link>
+                <button
+                  className="flex items-center gap-2 px-4 py-2 font-medium transition bg-white rounded text-primary hover:bg-secondary"
+                  onClick={() => {
+                    removeAccessToken();
+                    window.location.reload();
+                  }}
+                >
+                  <TiArrowLeftOutline />
+                  Log Out
+                </button>
+                <div className="flex flex-col mt-10">
+                  <Link
+                    to="/"
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                  >
+                    <MdOutlineLeaderboard className="w-5 h-5" />
+                    <div>Home Page</div>
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                  >
+                    <MdOutlineLeaderboard className="w-5 h-5" />
+                    <div>Workspace</div>
+                  </Link>
+                  {/* <Link
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                    to="/member"
+                  >
+                    <IoPersonOutline className="w-5 h-5" />
+                    <div>Members</div>
+                  </Link> */}
+                  <Link
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                    to="/userpf"
+                  >
+                    <IoSettingsOutline className="w-5 h-5" />
+                    <div>User Profile</div>
+                  </Link>
+                  <Link
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                    to="/notification"
+                  >
+                    <IoMdNotificationsOutline className="w-5 h-5" />
+                    <div>Notifications</div>
+                  </Link>
+                  <Link
+                    className="flex justify-start py-4 pl-4 space-x-4 transition-all duration-500 hover:bg-primary hover:text-background"
+                    to="/aboutus"
+                  >
+                    <IoIosHelpCircleOutline className="w-5 h-5" />
+                    <div>About Taskify</div>
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 }

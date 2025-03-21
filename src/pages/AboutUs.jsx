@@ -174,21 +174,21 @@ export function AboutUs() {
     />
     
 
-      <div className="relative z-0 px-6 text-center text-white sm:px-12">
+      <div className="relative z-0 flex flex-col gap-4 px-6 text-center text-white sm:px-12">
         {/* First Paragraph */}
-        <motion.p
-          className="text-lg sm:text-xl text-primary"
+        {/* <motion.p
+          className="text-4xl sm:text-xl dark:text-white text-primary"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
           viewport={{ once: false }}
         >
           WANNA LEARN WHO WE ARE?
-        </motion.p>
+        </motion.p> */}
 
         {/* Heading */}
         <motion.h1 ref={bl}
-          className="text-primary text-2xl sm:text-3xl md:text-4xl font-bold max-w-[90%] sm:max-w-[500px] mx-auto"
+          className="text-primary text-2xl sm:text-3xl md:text-4xl font-bold max-w-[90%] sm:max-w-[500px] mx-auto dark:text-white"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5 }}

@@ -9,6 +9,7 @@ import { useLocation, useParams } from "react-router";
 
 export default function ToDoPage() {
     const [progress, setProgress] = useState(false)
+    const [taskId, setTaskId] = useState("")
     // const [userId, setUserId] = useState("");
     // const [todoData, setTodoData] = useState();
     //   const token = getAceAccessToken();
@@ -43,8 +44,8 @@ export default function ToDoPage() {
                     <TodoCardList tasks={todoInWorkspaces} />
                 </div>
 
-                    <div className={"lg:w-[780px] w-96 lg:mt-0 md:mt-16 overscroll-none hidden md:block md:h-[600px] lg:h-[570px] 2xl:h-auto bg-white  dark:bg-gray-700  overflow-hidden rounded-2xl overflow-y-scroll scroll-smooth "}>
-                        {progress &&(<TodoCardDetail/>)}
+                    <div className={"lg:w-[780px] w-96 lg:mt-0 md:mt-16 overscroll-none hidden md:block md:h-[600px] lg:h-[570px] 2xl:h-auto bg-gray-50 dark:bg-gray-700  overflow-hidden rounded-2xl overflow-y-scroll scroll-smooth "}>
+                        {progress &&(<TodoCardDetail />)}
                     </div>
 
 

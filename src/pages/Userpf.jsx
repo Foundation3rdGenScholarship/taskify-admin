@@ -94,6 +94,25 @@ export default function Userpf() {
             </div>
           </div>
         </div>
+        {/* <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div>
+            <div className="font-medium text-gray-600 dark:text-gray-100">
+              user_id
+            </div>
+            <div className="p-3 font-semibold border rounded-md text-primary bg-gray-50">
+              {narMe.id}
+            </div>
+          </div>
+          <div>
+            <div className="font-medium text-gray-600 dark:text-gray-100">
+              roles
+            </div>
+            <div className="p-3 font-semibold border rounded-md text-primary bg-gray-50">
+              {narMe.role}
+            </div>
+          </div>
+        </div> */}
+
         {/* Gender */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <div>

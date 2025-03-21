@@ -3,6 +3,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEditpasswordMutation } from "../features/auth/authApiSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function EditProfilePage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,9 +28,9 @@ export default function EditProfilePage() {
 
   const formik = useFormik({
     initialValues: {
-        confirmed_password: "",
-        new_password: "",
-        old_password: "",
+      confirmed_password: "",
+      new_password: "",
+      old_password: "",
     },
     validationSchema: Yup.object({
       old_password: Yup.string().required("Current password is required"),
@@ -42,66 +44,74 @@ export default function EditProfilePage() {
     onSubmit: async (values) => {
       console.log("Edited password updated successfully", values);
       const EditResponse = await editepassword(values).unwrap();
+      console.log("EditResponse :>> ", EditResponse);
+  
+        toast.success("Updated password successfully");
+      
+
       console.log(EditResponse);
     },
   });
 
   return (
-    <div className="flex flex-col items-center bg-background justify-center min-h-screen p-4 text-black dark:text-white dark:bg-gray-900 ">
-      <div className="p-6  shadow-lg rounded-2xl bg-white dark:bg-gray-800 w-96">
-        <h2 className="mb-4 text-[24px] font-bold dark:text-white text-center text-primary">
-          Change Password
-        </h2>
-        <form onSubmit={formik.handleSubmit} className="w-full space-y-4">
-          <PasswordInput
-            label="Current Password"
-            name="old_password"
-            value={formik.values.old_password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.old_password && formik.errors.old_password
-            }
-            showPassword={showPassword}
-            togglePassword={() => setShowPassword(!showPassword)}
-          />
+    <>
+      
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-black bg-background dark:text-white dark:bg-gray-900 ">
+      <ToastContainer/>
+        <div className="p-6 bg-white shadow-lg rounded-2xl dark:bg-gray-800 w-96">
+          <h2 className="mb-4 text-[24px] font-bold dark:text-white text-center text-primary">
+            Change Password
+          </h2>
+          <form onSubmit={formik.handleSubmit} className="w-full space-y-4">
+            <PasswordInput
+              label="Current Password"
+              name="old_password"
+              value={formik.values.old_password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.old_password && formik.errors.old_password}
+              showPassword={showPassword}
+              togglePassword={() => setShowPassword(!showPassword)}
+            />
 
-          <PasswordInput
-            label="New Password"
-            name="new_password"
-            value={formik.values.new_password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.new_password && formik.errors.new_password}
-            showPassword={showPassword}
-            togglePassword={() => setShowPassword(!showPassword)}
-          />
+            <PasswordInput
+              label="New Password"
+              name="new_password"
+              value={formik.values.new_password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.new_password && formik.errors.new_password}
+              showPassword={showPassword}
+              togglePassword={() => setShowPassword(!showPassword)}
+            />
 
-          <PasswordInput
-            label="Confirm Password"
-            name="confirmed_password"
-            value={formik.values.confirmed_password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={
-              formik.touched.confirmed_password && formik.errors.confirmed_password
-            }
-            showPassword={showPassword}
-            togglePassword={() => setShowPassword(!showPassword)}
-          />
+            <PasswordInput
+              label="Confirm Password"
+              name="confirmed_password"
+              value={formik.values.confirmed_password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={
+                formik.touched.confirmed_password &&
+                formik.errors.confirmed_password
+              }
+              showPassword={showPassword}
+              togglePassword={() => setShowPassword(!showPassword)}
+            />
 
-          <button
-            type="submit"
-            className={`w-full py-2 font-bold text-white transition-all bg-primary dark:bg-blue-600 rounded-lg shadow-md hover:bg-subaccent dark:hover:bg-blue-500 ${
-              formik.isSubmitting ? "cursor-not-allowed opacity-70" : ""
-            }`}
-            disabled={formik.isSubmitting}
-          >
-            {formik.isSubmitting ? "Saving..." : "Save Password"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              className={`w-full py-2 font-bold text-white transition-all bg-primary dark:bg-blue-600 rounded-lg shadow-md hover:bg-subaccent dark:hover:bg-blue-500 ${
+                formik.isSubmitting ? "cursor-not-allowed opacity-70" : ""
+              }`}
+              disabled={formik.isSubmitting}
+            >
+              {formik.isSubmitting ? "Saving..." : "Save Password"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -126,7 +136,7 @@ function PasswordInput({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
-          className="w-full p-3  bg-white border border-gray-600 rounded-lg dark:text-gray-900 dark:bg-gray-200 dark:border-gray-300 focus:border-blue-400"
+          className="w-full p-3 bg-white border border-gray-600 rounded-lg dark:text-gray-900 dark:bg-gray-200 dark:border-gray-300 focus:border-blue-400"
         />
         <button
           type="button"

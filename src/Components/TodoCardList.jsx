@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight, ClipboardList, Clock } from "lucide-react"
 import { useState,useEffect } from "react"
 import {NavLink} from "react-router";
 import { format } from "date-fns";
+import { Link } from "react-router";
 import { useGetCategoriesQuery } from "../features/categoriesApi";
 
 // const DB = [
@@ -36,9 +37,8 @@ import { useGetCategoriesQuery } from "../features/categoriesApi";
 
 function TodoCard({ item }) {
     const [isHovered, setIsHovered] = useState(false)
-
-
-
+    
+    
     const formatDate = (isoString) => {
         const date = new Date(isoString);
         return isNaN(date) ? "Invalid Date" : format(date, "MMM do, yyyy");
@@ -57,8 +57,8 @@ function TodoCard({ item }) {
         
 
     return (
-        <div
-            className="rounded-xl bg-white dark:bg-gray-700  p-4 border-2 dark:border-none dark:text-white w-72 space-y-4"
+        <Link to={`/todo/${item.id}`}
+            className="p-4 space-y-4 bg-white border-2 rounded-xl dark:bg-gray-700 dark:border-none dark:text-white w-72"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
 
@@ -100,7 +100,7 @@ function TodoCard({ item }) {
                 <Clock strokeWidth={1} className="mr-1" />
                 {formatDate(item.created_at)}
             </div>
-        </div>
+        </Link>
     )
 }
 
