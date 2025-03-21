@@ -58,7 +58,7 @@ function TodoCard({ item }) {
 
     return (
         <div
-            className="p-4 space-y-4 bg-white border-2 rounded-xl dark:bg-gray-700 dark:border-none dark:text-white w-72"
+            className="rounded-xl bg-white dark:bg-gray-700  p-4 border-2 dark:border-none dark:text-white w-72 space-y-4"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
 

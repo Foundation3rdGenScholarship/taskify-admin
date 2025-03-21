@@ -190,11 +190,13 @@ import {
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { getAceAccessToken } from "../lib/secureLocalStorage";
+import { Link } from "react-router";
 
-export default function EditTaskPupUp({ isOpen, onClose, token }) {
-  console.log("isopen", isOpen);
-  console.log("token", token);
 
+export default function EditTaskPupUp() {
+  console.log("getAceAccessToken()",getAceAccessToken())
+  
   const initialValues = {
     title: "{{$randomBankAccountName}}, input your task title here",
     note: "{{$randomCatchPhraseAdjective}}, input your task note here",
@@ -237,7 +239,7 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
 
   return (
     <>
-      <div className="flex items-center justify-center bg-black bg-opacity-50 font-roboto">
+      <div className="inset-0 top-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 dark:bg-black dar font-roboto">
         <div className="bg-white dark:bg-gray-900 dark:text-gray-200 p-6 rounded-lg shadow-lg w-[95%] max-w-5xl relative  flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between text-xl font-semibold">
@@ -248,12 +250,6 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
               </span>
               <span className="pr-1">Design User Interface</span>
             </h3>
-            <button
-              onClick={onClose}
-              className="text-xl text-gray-500 hover:text-primary dark:text-gray-400 "
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
           </div>
 
           {/* Divider */}
@@ -390,68 +386,17 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
 
                   {/* Assignee */}
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">
-                      Assign to
-                    </label>
-                    <Field
-                      as="select"
-                      name="assignee"
-                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
-                    >
+                    <label className="font-medium text-primary dark:text-white">Assign to</label>
+                    <Field as="select" name="assignee" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
                       <option value="">Select</option>
                       <option value="Mr. Say Seyha">Mr. Say Seyha</option>
                     </Field>
                   </div>
                   <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">
-                      is_completed
-                    </label>
-                    <Field
-                      as="select"
-                      name="assignee"
-                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
-                    >
-                      <option value="true">true</option>
-                      <option value="false">false</option>
-                    </Field>
-                  </div>
-
-                  <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">
-                      is_imporstand
-                    </label>
-                    <Field
-                      as="select"
-                      name="assignee"
-                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
-                    >
-                      <option value="true">true</option>
-                      <option value="false">false</option>
-                    </Field>
-                  </div>
-
-                  <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">
-                      is_archive
-                    </label>
-                    <Field
-                      as="select"
-                      name="assignee"
-                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
-                    >
-                      <option value="true">true</option>
-                      <option value="false">false</option>
-                    </Field>
-                  </div>
-                  <div className="pb-5 xl:pb-7">
-                    <label className="font-medium text-primary">Category</label>
-                    <Field
-                      as="select"
-                      name="category_id"
-                      className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary"
-                    >
-                      <option value="">Select Category</option>
-                      {/* {categories.map((cat) => (
+                    <label className="font-medium text-primary dark:text-white">Category</label>
+                    <Field as="select" name="category_id" className="w-full p-2 border rounded-md dark:bg-gray-800 border-primary">
+                    <option value="">Select Category</option>
+                  {/* {categories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
                       {cat.title}
                     </option>
@@ -463,13 +408,10 @@ export default function EditTaskPupUp({ isOpen, onClose, token }) {
 
               {/* Buttons */}
               <div className="flex justify-end space-x-4">
-                <button className="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg dark:bg-gray-700 dark:text-white">
+                <Link to="/tododetail" className="px-4 py-2 text-gray-700 bg-gray-300 rounded-lg dark:bg-gray-700 dark:text-white">
                   Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-blue-700"
-                >
+                </Link>
+                <button type="submit" className="px-4 py-2 text-white rounded-lg bg-primary hover:bg-blue-700">
                   Save Task
                 </button>
               </div>

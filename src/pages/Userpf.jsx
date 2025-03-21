@@ -94,25 +94,6 @@ export default function Userpf() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          <div>
-            <div className="font-medium text-gray-600 dark:text-gray-100">
-              user_id
-            </div>
-            <div className="p-3 font-semibold border rounded-md text-primary bg-gray-50">
-              {narMe.id}
-            </div>
-          </div>
-          <div>
-            <div className="font-medium text-gray-600 dark:text-gray-100">
-              roles
-            </div>
-            <div className="p-3 font-semibold border rounded-md text-primary bg-gray-50">
-              {narMe.role}
-            </div>
-          </div>
-        </div>
-
         {/* Gender */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <div>
@@ -133,12 +114,14 @@ export default function Userpf() {
           </div>
         </div>
         <div className="flex items-end space-x-2 md:space-x-4">
+          <Link to = "/archive">
           <button className="flex items-center px-3 py-2 text-white transition-all duration-500 rounded-md bg-primary hover:bg-blue-600 ">
             <span className="mr-2">
               <FaRegWindowRestore />{" "}
             </span>
             View Archive
           </button>
+          </Link>
           <Link to="/editprofilepage">
             <button className="flex items-center px-3 py-2 text-white transition-all duration-500 rounded-md bg-primary hover:bg-blue-600 ">
               <span className="mr-2">

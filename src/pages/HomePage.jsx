@@ -14,7 +14,10 @@ import Homepage from "../assets/Homepage.gif";
 import CardDiscription2 from "../Components/CardDiscription2";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { TiArrowLeftOutline } from "react-icons/ti";
-import { removeAccessToken } from "../lib/secureLocalStorage";
+import {
+  getAceAccessToken,
+  removeAccessToken,
+} from "../lib/secureLocalStorage";
 
 export default function HomePage() {
   const card = [
@@ -413,21 +416,28 @@ export default function HomePage() {
           </motion.div>
         </motion.section>
       </section>
-      <div className="sticky right-0 bottom-2 rounded-3xl">
-         <div className="absolute right-0 bottom-4 bg-primary rounded-3xl">
-        <a href="/" className={" hover:bg-primary flex justify-center"} onClick={()=>{removeAccessToken()}}>
-          <div
-            className={
-              "flex justify-start items-center gap-1 align-middle p-4 transition-all duration-500 rounded-3xl hover:bg-primary hover:text-background dark:text-white "
-            }
-          >
-            <TiArrowLeftOutline />
-            <div>Log Out</div>
+      {getAceAccessToken() && (
+        <div className="sticky right-0 bottom-2 rounded-3xl">
+          <div className="absolute right-0 bottom-4 bg-primary rounded-3xl">
+            <a
+              href="/"
+              className={" hover:bg-primary flex justify-center"}
+              onClick={() => {
+                removeAccessToken();
+              }}
+            >
+              <div
+                className={
+                  "flex text-white justify-start items-center gap-1 align-middle p-4 transition-all duration-500 rounded-3xl hover:bg-primary hover:text-background dark:text-white "
+                }
+              >
+                <TiArrowLeftOutline className="text-white" />
+                <div className="text-white">Log Out</div>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      </div>
-     
+        </div>
+      )}
     </>
   );
 }

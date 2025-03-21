@@ -90,7 +90,7 @@ function Kanban() {
 
  console.log('hello userId', userId)
   return (
-    <div className="font-roboto p-8 bg-background dark:bg-[#121321]">
+    <div className="w-full mx-auto shadow-md p-8 min-h-screen font-roboto bg-background dark:bg-[#121321]">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 mb-6 md:flex-row">
         <div className="p-2 font-bold text-center transition-all duration-500 bg-white rounded-3xl text-txt16 md:text-txt20 hover:bg-primary hover:text-white dark:bg-primary dark:hover:bg-blue-500 text-primary dark:text-white hover:shadow-sm">

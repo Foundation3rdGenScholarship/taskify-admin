@@ -10,7 +10,7 @@ export default function MemberPage (){
     const closeMenu = () => {setIsOpen(false);}
     return (
         <>
-            <div className={"w-full p-8 bg-background"}>
+            <div className={"w-full p-8 bg-background dark:bg-gray-900"}>
                     <div className={"space-y-2 my-4"}>
                     <p className={"text-primary text-[24px] font-bold"}>All Members</p>
                     <p className={"text-txt18 dark:text-white"}>Workspace members can view and join all Workspace visible boards and create new boards in the Workspace.</p>
